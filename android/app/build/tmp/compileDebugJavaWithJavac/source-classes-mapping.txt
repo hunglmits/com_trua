@@ -1,0 +1,14 @@
+com/zwei_app/MainActivity.java
+ com.zwei_app.MainActivity
+com/zwei_app/ReactNativeFlipper.java
+ com.zwei_app.ReactNativeFlipper
+ com.zwei_app.ReactNativeFlipper$1
+ com.zwei_app.ReactNativeFlipper$2
+ com.zwei_app.ReactNativeFlipper$2$1
+com/zwei_app/MainApplication.java
+ com.zwei_app.MainApplication
+ com.zwei_app.MainApplication$1
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList
+com/zwei_app/BuildConfig.java
+ com.zwei_app.BuildConfig

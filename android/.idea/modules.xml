@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/zwei_app.iml" filepath="$PROJECT_DIR$/.idea/modules/zwei_app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/zwei_app.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/zwei_app.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1679621078/zwei_app.react-native-firebase_app.iml" filepath="$PROJECT_DIR$/.idea/modules/-1679621078/zwei_app.react-native-firebase_app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/680201037/zwei_app.react-native-firebase_messaging.iml" filepath="$PROJECT_DIR$/.idea/modules/680201037/zwei_app.react-native-firebase_messaging.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-547237190/zwei_app.react-native-webview.iml" filepath="$PROJECT_DIR$/.idea/modules/-547237190/zwei_app.react-native-webview.iml" />
+    </modules>
+  </component>
+</project>

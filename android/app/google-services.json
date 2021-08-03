@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "125526134582",
+    "project_id": "zwei-stg",
+    "storage_bucket": "zwei-stg.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:125526134582:android:c02163e8cc38fc981d6d97",
+        "android_client_info": {
+          "package_name": "jp.zwei.application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "125526134582-a2ste5vek3f192n4nti00g7ogb64869e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtVyfBIGiZR2Whmi8815x7IUrc-UDFaKM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "125526134582-a2ste5vek3f192n4nti00g7ogb64869e.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "125526134582-bkcmcohggf394pf89kfj8otmq3aqjg15.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "jp.zwei.application"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

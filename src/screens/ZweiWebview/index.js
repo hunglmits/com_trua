@@ -4,18 +4,30 @@ import { View, StyleSheet, Platform } from "react-native";
 
 import { WebView } from "react-native-webview";
 import { Constants } from "../../utils";
+import { useNotificationHandler } from "../../hooks";
 
 import messaging from "@react-native-firebase/messaging";
 
+const BASE_URL =
+  "https://zwei-test:MsVfM7aVBf@dev.zwei-test.com/members/sign_in";
+
 const ZweiWebview = () => {
+  const { notificationHandler, notiData } = useNotificationHandler();
+  notificationHandler();
+
   const [deviceToken, setDeviceToken] = useState("");
   const [deviceType, setDeviceType] = useState("");
+  const [url, setUrl] = useState(BASE_URL);
 
   const webviewRef = useRef();
 
   useEffect(() => {
     initNotification();
   }, []);
+
+  useEffect(() => {
+    setUrl(notiData?.url || BASE_URL);
+  }, [notiData]);
 
   const initNotification = useCallback(() => {
     const asyncFunc = async () => {
@@ -39,7 +51,7 @@ const ZweiWebview = () => {
       <WebView
         ref={webviewRef}
         source={{
-          uri: `https://zwei-test:MsVfM7aVBf@dev.zwei-test.com/members/sign_in`,
+          uri: url,
         }}
         style={styles.webview}
         showsVerticalScrollIndicator={false}

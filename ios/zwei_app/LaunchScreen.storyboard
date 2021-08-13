@@ -16,8 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="SplashIcon" translatesAutoresizingMaskIntoConstraints="NO" id="piM-Oy-0uv">
-                                <rect key="frame" x="101" y="249" width="172" height="169"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashIcon" translatesAutoresizingMaskIntoConstraints="NO" id="piM-Oy-0uv">
+                                <rect key="frame" x="101" y="-266.5" width="172" height="1200"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
@@ -25,6 +25,10 @@
                         <constraints>
                             <constraint firstItem="piM-Oy-0uv" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="4gC-B6-cd0"/>
                             <constraint firstItem="piM-Oy-0uv" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="S1V-J8-gkm"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="piM-Oy-0uv" secondAttribute="trailing" constant="102" id="aoq-66-Lfn"/>
+                            <constraint firstItem="piM-Oy-0uv" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="o1N-jd-gwr"/>
+                            <constraint firstItem="piM-Oy-0uv" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="101" id="rFd-8o-r5D"/>
+                            <constraint firstItem="piM-Oy-0uv" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="u7D-t2-Ws5"/>
                         </constraints>
                     </view>
                 </viewController>

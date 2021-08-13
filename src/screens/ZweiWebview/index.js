@@ -1,6 +1,6 @@
 // import analytics from '@react-native-firebase/analytics'
 import React, { useState, useCallback, useEffect, useRef } from "react";
-import { View, StyleSheet, Platform } from "react-native";
+import { View, StyleSheet, Platform, ActivityIndicator } from "react-native";
 
 import { WebView } from "react-native-webview";
 import { Constants } from "../../utils";
@@ -41,6 +41,14 @@ const ZweiWebview = () => {
     asyncFunc();
   });
 
+  const renderLoadingIndicatorView = () => {
+    return (
+      <View style={styles.loadingWrapper}>
+        <ActivityIndicator color="#009b88" size="large" />
+      </View>
+    );
+  };
+
   const renderWebview = () => {
     const js = `
       window.document.getElementById('member_device_token').value = '${deviceToken}';
@@ -59,6 +67,8 @@ const ZweiWebview = () => {
         javaScriptEnabledAndroid={true}
         onMessage={(event) => {}}
         injectedJavaScript={js}
+        startInLoadingState={true}
+        renderLoading={renderLoadingIndicatorView}
       />
     );
   };
@@ -73,6 +83,9 @@ const styles = StyleSheet.create({
   webview: {
     marginTop: Constants.layout.navPadding,
     marginBottom: Constants.layout.navPadding / 2,
+  },
+  loadingWrapper: {
+    flex: 1,
   },
 });
 

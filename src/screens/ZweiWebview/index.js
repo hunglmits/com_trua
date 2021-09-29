@@ -9,7 +9,7 @@ import { useNotificationHandler } from "../../hooks";
 import messaging from "@react-native-firebase/messaging";
 
 const BASE_URL =
-  "https://zwei-test:MsVfM7aVBf@dev.zwei-test.com/members/sign_in";
+  "https://zwei-test:MsVfM7aVBf@stg5-4.zwei-test.com/members/sign_in";
 
 const ZweiWebview = () => {
   const { notificationHandler, notiData } = useNotificationHandler();
@@ -34,7 +34,6 @@ const ZweiWebview = () => {
       await messaging().requestPermission();
       const type = Platform.OS;
       const token = await messaging().getToken();
-      console.log("token-", token);
       setDeviceToken(token);
       setDeviceType(type);
     };
@@ -86,6 +85,13 @@ const styles = StyleSheet.create({
   },
   loadingWrapper: {
     flex: 1,
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 

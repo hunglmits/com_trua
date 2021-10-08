@@ -68,6 +68,7 @@ const ZweiWebview = () => {
         injectedJavaScript={js}
         startInLoadingState={true}
         renderLoading={renderLoadingIndicatorView}
+        allowsBackForwardNavigationGestures={true}
       />
     );
   };

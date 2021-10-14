@@ -14,6 +14,10 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/../node_modules/@react-native-firebase/app/android" />
             <option value="$PROJECT_DIR$/../node_modules/@react-native-firebase/messaging/android" />
+            <option value="$PROJECT_DIR$/../node_modules/appcenter-analytics/android" />
+            <option value="$PROJECT_DIR$/../node_modules/appcenter-crashes/android" />
+            <option value="$PROJECT_DIR$/../node_modules/appcenter/android" />
+            <option value="$PROJECT_DIR$/../node_modules/react-native-code-push/android/app" />
             <option value="$PROJECT_DIR$/../node_modules/react-native-webview/android" />
           </set>
         </option>

@@ -15,6 +15,14 @@ import java.util.ArrayList;
 import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
 // @react-native-firebase/messaging
 import io.invertase.firebase.messaging.ReactNativeFirebaseMessagingPackage;
+// appcenter
+import com.microsoft.appcenter.reactnative.appcenter.AppCenterReactNativePackage;
+// appcenter-analytics
+import com.microsoft.appcenter.reactnative.analytics.AppCenterReactNativeAnalyticsPackage;
+// appcenter-crashes
+import com.microsoft.appcenter.reactnative.crashes.AppCenterReactNativeCrashesPackage;
+// react-native-code-push
+import com.microsoft.codepush.react.CodePush;
 // react-native-webview
 import com.reactnativecommunity.webview.RNCWebViewPackage;
 
@@ -64,6 +72,10 @@ public class PackageList {
       new MainReactPackage(mConfig),
       new ReactNativeFirebaseAppPackage(),
       new ReactNativeFirebaseMessagingPackage(),
+      new AppCenterReactNativePackage(getApplication()),
+      new AppCenterReactNativeAnalyticsPackage(getApplication(), getResources().getString(com.zwei_app.R.string.appCenterAnalytics_whenToEnableAnalytics)),
+      new AppCenterReactNativeCrashesPackage(getApplication(), getResources().getString(com.zwei_app.R.string.appCenterCrashes_whenToSendCrashes)),
+      new CodePush(getResources().getString(com.zwei_app.R.string.CodePushDeploymentKey), getApplicationContext(), com.zwei_app.BuildConfig.DEBUG),
       new RNCWebViewPackage()
     ));
   }

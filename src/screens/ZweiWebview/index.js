@@ -10,7 +10,7 @@ import {
 } from "react-native";
 
 import { WebView } from "react-native-webview";
-import { useNotificationHandler } from "../../hooks";
+import { useNotificationHandler, useShortcutBadge } from "../../hooks";
 
 import messaging from "@react-native-firebase/messaging";
 
@@ -20,6 +20,7 @@ const BASE_URL = `https://zwei-test:MsVfM7aVBf@${ORIGIN_URL}/members/sign_in${AP
 
 const ZweiWebview = () => {
   const { notificationHandler, notiData } = useNotificationHandler();
+  const { setBadge } = useShortcutBadge();
   notificationHandler();
 
   const [deviceToken, setDeviceToken] = useState("");
@@ -28,6 +29,7 @@ const ZweiWebview = () => {
   const webviewRef = useRef();
 
   useEffect(() => {
+    setBadge(0);
     initNotification();
   }, []);
 

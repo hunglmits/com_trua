@@ -10,15 +10,20 @@ import {
 } from "react-native";
 
 import { WebView } from "react-native-webview";
-import { useNotificationHandler, useShortcutBadge } from "../../hooks";
+import {
+  useNotificationHandler,
+  useShortcutBadge,
+  useAppState,
+} from "../../hooks";
 
 import messaging from "@react-native-firebase/messaging";
 
 const ORIGIN_URL = "stg4.zwei-test.com";
 const APP_PARAM = "?flag_app=true";
-const BASE_URL = `https://zwei-test:MsVfM7aVBf@${ORIGIN_URL}/members/sign_in${APP_PARAM}`;
+const BASE_URL = `https://zwei-test:MsVfM7aVBf@${ORIGIN_URL}`;
 
 const ZweiWebview = () => {
+  const [onAppStateChange] = useAppState();
   const { notificationHandler, notiData } = useNotificationHandler();
   const { setBadge } = useShortcutBadge();
   notificationHandler();
@@ -29,8 +34,10 @@ const ZweiWebview = () => {
   const webviewRef = useRef();
 
   useEffect(() => {
-    setBadge(0);
     initNotification();
+    onAppStateChange({
+      onForeground: initNotification,
+    });
   }, []);
 
   useEffect(() => {
@@ -41,6 +48,18 @@ const ZweiWebview = () => {
     setUrl(BASE_URL);
   }, [notiData]);
 
+  const onResetNotificationCount = useCallback(
+    (token = deviceToken) => {
+      setBadge(0);
+      fetch(
+        `${BASE_URL}/api/v1/members/reset_notify?device_token=${
+          token || deviceToken
+        }`
+      ).then((res) => console.log("res", res));
+    },
+    [fetch, deviceToken, setBadge]
+  );
+
   const initNotification = useCallback(() => {
     const asyncFunc = async () => {
       await messaging().requestPermission();
@@ -48,6 +67,7 @@ const ZweiWebview = () => {
       const token = await messaging().getToken();
       setDeviceToken(token);
       setDeviceType(type);
+      onResetNotificationCount(token);
     };
     asyncFunc();
   });
@@ -64,6 +84,7 @@ const ZweiWebview = () => {
     const js = `
       window.document.getElementById('member_device_token').value = '${deviceToken}';
       window.document.getElementById('member_device_name').value = '${deviceType}';
+      window.document.getElementById('flag_app').value = 'true';
     `;
 
     return (
@@ -79,10 +100,6 @@ const ZweiWebview = () => {
         onShouldStartLoadWithRequest={(event) => {
           if (!event.url.includes(ORIGIN_URL)) {
             Linking.openURL(event.url);
-            return false;
-          }
-          if (!event.url.includes(APP_PARAM)) {
-            setUrl(`${event.url}${APP_PARAM}`);
             return false;
           }
           return true;

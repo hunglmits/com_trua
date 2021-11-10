@@ -18,6 +18,7 @@ MERGED from [:react-native-webview] /Volumes/Job/ITS/zwei-app/node_modules/react
 MERGED from [com.facebook.react:react-native:0.64.2] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/75b24be55300a09ad982ed2efd1befdb/jetified-react-native-0.64.2/AndroidManifest.xml:2:1-13:12
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/bc41568f187cafaf5fb6dce3136d9ccf/swiperefreshlayout-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [org.webkit:android-jsc:r245459] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/f89e12a37dba8a4a730f61157fb9e507/jetified-android-jsc-r245459/AndroidManifest.xml:2:1-11:12
+MERGED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-37:12
 MERGED from [com.facebook.fresco:flipper:2.2.0] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/29bae37c1af4b0b054cf0d15b73868f5/jetified-flipper-2.2.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:stetho:2.2.0] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/8eb50c914ad44965f604ecddda5fae30/jetified-stetho-2.2.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:fresco:2.2.0] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/53ba1a61837c15ce735e09bb81fb6e11/jetified-fresco-2.2.0/AndroidManifest.xml:2:1-9:12
@@ -83,6 +84,7 @@ MERGED from [com.microsoft.appcenter.reactnative:appcenter-react-native:4.0.2] /
 MERGED from [com.microsoft.appcenter:appcenter-analytics:4.1.0] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/69bb99365dc8dd33d117db47b605266d/jetified-appcenter-analytics-4.1.0/AndroidManifest.xml:6:1-15:12
 MERGED from [com.microsoft.appcenter:appcenter-crashes:4.1.0] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/b12c2985264ed48341732fd9ed905ee6/jetified-appcenter-crashes-4.1.0/AndroidManifest.xml:6:1-15:12
 MERGED from [com.microsoft.appcenter:appcenter:4.1.0] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/1d3c1034bb6d4bec487863ee49146a11/jetified-appcenter-4.1.0/AndroidManifest.xml:6:1-18:12
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:2:1-52:12
 MERGED from [com.facebook.fresco:fbcore:2.2.0] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/2eb33fc3decbc1dc20f1cf17b12b21ff/jetified-fbcore-2.2.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:ui-common:2.2.0] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/70945aba1d55af553dcaab829ea844bd/jetified-ui-common-2.2.0/AndroidManifest.xml:2:1-9:12
 INJECTED from /Volumes/Job/ITS/zwei-app/android/app/src/debug/AndroidManifest.xml:2:1-13:12
@@ -245,6 +247,8 @@ MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/linhho
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/bc41568f187cafaf5fb6dce3136d9ccf/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [org.webkit:android-jsc:r245459] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/f89e12a37dba8a4a730f61157fb9e507/jetified-android-jsc-r245459/AndroidManifest.xml:7:5-9:41
 MERGED from [org.webkit:android-jsc:r245459] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/f89e12a37dba8a4a730f61157fb9e507/jetified-android-jsc-r245459/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.fresco:flipper:2.2.0] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/29bae37c1af4b0b054cf0d15b73868f5/jetified-flipper-2.2.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:flipper:2.2.0] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/29bae37c1af4b0b054cf0d15b73868f5/jetified-flipper-2.2.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:stetho:2.2.0] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/8eb50c914ad44965f604ecddda5fae30/jetified-stetho-2.2.0/AndroidManifest.xml:5:5-7:41
@@ -375,6 +379,8 @@ MERGED from [com.microsoft.appcenter:appcenter-crashes:4.1.0] /Users/linhhoo/.gr
 MERGED from [com.microsoft.appcenter:appcenter-crashes:4.1.0] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/b12c2985264ed48341732fd9ed905ee6/jetified-appcenter-crashes-4.1.0/AndroidManifest.xml:11:5-13:41
 MERGED from [com.microsoft.appcenter:appcenter:4.1.0] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/1d3c1034bb6d4bec487863ee49146a11/jetified-appcenter-4.1.0/AndroidManifest.xml:11:5-13:41
 MERGED from [com.microsoft.appcenter:appcenter:4.1.0] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/1d3c1034bb6d4bec487863ee49146a11/jetified-appcenter-4.1.0/AndroidManifest.xml:11:5-13:41
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:7:5-9:41
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.fresco:fbcore:2.2.0] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/2eb33fc3decbc1dc20f1cf17b12b21ff/jetified-fbcore-2.2.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:fbcore:2.2.0] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/2eb33fc3decbc1dc20f1cf17b12b21ff/jetified-fbcore-2.2.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:ui-common:2.2.0] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/70945aba1d55af553dcaab829ea844bd/jetified-ui-common-2.2.0/AndroidManifest.xml:5:5-7:41
@@ -489,6 +495,106 @@ ADDED from [:react-native-webview] /Volumes/Job/ITS/zwei-app/node_modules/react-
 		ADDED from [:react-native-webview] /Volumes/Job/ITS/zwei-app/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:19:17-60
 	android:name
 		ADDED from [:react-native-webview] /Volumes/Job/ITS/zwei-app/node_modules/react-native-webview/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:17-67
+uses-permission#com.sec.android.provider.badge.BadgeProvider
+ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-84
+	android:name
+		ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:22-81
+uses-permission#com.sec.android.provider.badge.permission.READ
+ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-86
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:19:5-86
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:19:5-86
+	android:name
+		ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:22-83
+uses-permission#com.sec.android.provider.badge.permission.WRITE
+ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:5-87
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:20:5-87
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:20:5-87
+	android:name
+		ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:22-84
+uses-permission#com.htc.launcher.permission.READ_SETTINGS
+ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:5-81
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:23:5-81
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:23:5-81
+	android:name
+		ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:22-78
+uses-permission#com.htc.launcher.permission.UPDATE_SHORTCUT
+ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:5-83
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:24:5-83
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:24:5-83
+	android:name
+		ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:22-80
+uses-permission#com.sonyericsson.home.permission.BROADCAST_BADGE
+ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:5-88
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:27:5-88
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:27:5-88
+	android:name
+		ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:22-85
+uses-permission#com.sonymobile.home.permission.PROVIDER_INSERT_BADGE
+ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:19:5-92
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:28:5-92
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:28:5-92
+	android:name
+		ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:19:22-89
+uses-permission#com.anddoes.launcher.permission.UPDATE_COUNT
+ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:21:5-84
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:31:5-84
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:31:5-84
+	android:name
+		ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:21:22-81
+uses-permission#com.majeur.launcher.permission.UPDATE_BADGE
+ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:23:5-83
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:34:5-83
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:34:5-83
+	android:name
+		ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:23:22-80
+uses-permission#com.huawei.android.launcher.permission.CHANGE_BADGE
+ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:25:5-91
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:37:5-91
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:37:5-91
+	android:name
+		ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:25:22-88
+uses-permission#com.huawei.android.launcher.permission.READ_SETTINGS
+ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:26:5-92
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:38:5-92
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:38:5-92
+	android:name
+		ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:26:22-89
+uses-permission#com.huawei.android.launcher.permission.WRITE_SETTINGS
+ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:27:5-93
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:39:5-93
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:39:5-93
+	android:name
+		ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:27:22-90
+uses-permission#android.permission.READ_APP_BADGE
+ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:29:5-73
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:42:5-73
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:42:5-73
+	android:name
+		ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:29:22-70
+uses-permission#com.oppo.launcher.permission.READ_SETTINGS
+ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:31:5-82
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:45:5-82
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:45:5-82
+	android:name
+		ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:31:22-79
+uses-permission#com.oppo.launcher.permission.WRITE_SETTINGS
+ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:32:5-83
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:46:5-83
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:46:5-83
+	android:name
+		ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:32:22-80
+uses-permission#me.everything.badger.permission.BADGE_COUNT_READ
+ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:34:5-88
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:49:5-88
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:49:5-88
+	android:name
+		ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:34:22-85
+uses-permission#me.everything.badger.permission.BADGE_COUNT_WRITE
+ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:35:5-89
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:50:5-89
+MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/c11a7244ba86c9c1a426f4cd384f8398/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:50:5-89
+	android:name
+		ADDED from [:react-native-shortcut-badge] /Volumes/Job/ITS/zwei-app/node_modules/react-native-shortcut-badge/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:35:22-86
 uses-permission#com.google.android.c2dm.permission.RECEIVE
 ADDED from [com.google.firebase:firebase-messaging:22.0.0] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/607124079ab9844ddb8838657292535d/jetified-firebase-messaging-22.0.0/AndroidManifest.xml:25:5-82
 MERGED from [com.google.android.gms:play-services-cloud-messaging:16.0.0] /Users/linhhoo/.gradle/caches/transforms-2/files-2.1/31665edcaf53e4150e5c3297f6a32525/jetified-play-services-cloud-messaging-16.0.0/AndroidManifest.xml:11:5-82

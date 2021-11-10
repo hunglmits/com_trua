@@ -23,6 +23,8 @@ import com.microsoft.appcenter.reactnative.analytics.AppCenterReactNativeAnalyti
 import com.microsoft.appcenter.reactnative.crashes.AppCenterReactNativeCrashesPackage;
 // react-native-code-push
 import com.microsoft.codepush.react.CodePush;
+// react-native-shortcut-badge
+import com.github.amarcruz.rnshortcutbadge.RNShortcutBadgePackage;
 // react-native-webview
 import com.reactnativecommunity.webview.RNCWebViewPackage;
 
@@ -76,6 +78,7 @@ public class PackageList {
       new AppCenterReactNativeAnalyticsPackage(getApplication(), getResources().getString(com.zwei_app.R.string.appCenterAnalytics_whenToEnableAnalytics)),
       new AppCenterReactNativeCrashesPackage(getApplication(), getResources().getString(com.zwei_app.R.string.appCenterCrashes_whenToSendCrashes)),
       new CodePush(getResources().getString(com.zwei_app.R.string.CodePushDeploymentKey), getApplicationContext(), com.zwei_app.BuildConfig.DEBUG),
+      new RNShortcutBadgePackage(),
       new RNCWebViewPackage()
     ));
   }

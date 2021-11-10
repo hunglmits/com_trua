@@ -18,9 +18,11 @@ import {
 
 import messaging from "@react-native-firebase/messaging";
 
-const ORIGIN_URL = "stg4.zwei-test.com";
+const ORIGIN_URL = "stg5-4.zwei-test.com";
 const APP_PARAM = "?flag_app=true";
 const BASE_URL = `https://zwei-test:MsVfM7aVBf@${ORIGIN_URL}`;
+const PARAM_URL = `${BASE_URL}/members/sign_in${APP_PARAM}`;
+// const PARAM_URL = `${BASE_URL}${APP_PARAM}`;
 
 const ZweiWebview = () => {
   const [onAppStateChange] = useAppState();
@@ -30,7 +32,7 @@ const ZweiWebview = () => {
 
   const [deviceToken, setDeviceToken] = useState("");
   const [deviceType, setDeviceType] = useState("");
-  const [url, setUrl] = useState(BASE_URL);
+  const [url, setUrl] = useState(PARAM_URL);
   const webviewRef = useRef();
 
   useEffect(() => {
@@ -45,7 +47,7 @@ const ZweiWebview = () => {
       setUrl(`${notiData?.url}${APP_PARAM}`);
       return;
     }
-    setUrl(BASE_URL);
+    setUrl(PARAM_URL);
   }, [notiData]);
 
   const onResetNotificationCount = useCallback(
@@ -55,7 +57,8 @@ const ZweiWebview = () => {
         `${BASE_URL}/api/v1/members/reset_notify?device_token=${
           token || deviceToken
         }`
-      ).then((res) => console.log("res", res));
+      );
+      // .then((res) => console.log("res", res));
     },
     [fetch, deviceToken, setBadge]
   );
@@ -84,7 +87,6 @@ const ZweiWebview = () => {
     const js = `
       window.document.getElementById('member_device_token').value = '${deviceToken}';
       window.document.getElementById('member_device_name').value = '${deviceType}';
-      window.document.getElementById('flag_app').value = 'true';
     `;
 
     return (
@@ -97,15 +99,17 @@ const ZweiWebview = () => {
         showsVerticalScrollIndicator={false}
         javaScriptEnabled={true}
         javaScriptEnabledAndroid={true}
-        onShouldStartLoadWithRequest={(event) => {
+        onMessage={(event) => {}}
+        injectedJavaScript={js}
+        startInLoadingState={true}
+        onNavigationStateChange={(event) => {
           if (!event.url.includes(ORIGIN_URL)) {
             Linking.openURL(event.url);
+            webviewRef.current.stopLoading();
             return false;
           }
           return true;
         }}
-        injectedJavaScript={js}
-        startInLoadingState={true}
         renderLoading={renderLoadingIndicatorView}
         allowsBackForwardNavigationGestures={true}
       />

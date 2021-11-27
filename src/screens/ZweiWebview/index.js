@@ -18,7 +18,7 @@ import {
 
 import messaging from "@react-native-firebase/messaging";
 
-const ORIGIN_URL = "stg5-4.zwei-test.com";
+const ORIGIN_URL = "stg4.zwei-test.com";
 const APP_PARAM = "?flag_app=true";
 const BASE_URL = `https://zwei-test:MsVfM7aVBf@${ORIGIN_URL}`;
 const PARAM_URL = `${BASE_URL}/members/sign_in${APP_PARAM}`;
@@ -99,16 +99,18 @@ const ZweiWebview = () => {
         showsVerticalScrollIndicator={false}
         javaScriptEnabled={true}
         javaScriptEnabledAndroid={true}
-        onMessage={(event) => {}}
+        onMessage={(event) => {
+          console.log("event-->", event);
+        }}
         injectedJavaScript={js}
         startInLoadingState={true}
-        onNavigationStateChange={(event) => {
-          if (!event.url.includes(ORIGIN_URL)) {
-            Linking.openURL(event.url);
-            webviewRef.current.stopLoading();
-            return false;
-          }
-          return true;
+        onShouldStartLoadWithRequest={(event) => {
+          const { url } = event;
+          if (!url || url.includes(ORIGIN_URL)) return true;
+
+          // webviewRef.current.stopLoading();
+          Linking.openURL(event.url);
+          return false;
         }}
         renderLoading={renderLoadingIndicatorView}
         allowsBackForwardNavigationGestures={true}

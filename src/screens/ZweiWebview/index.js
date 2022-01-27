@@ -21,8 +21,8 @@ import messaging from "@react-native-firebase/messaging";
 const ORIGIN_URL = "stg4.zwei-test.com";
 const APP_PARAM = "?flag_app=true";
 const BASE_URL = `https://zwei-test:MsVfM7aVBf@${ORIGIN_URL}`;
-const PARAM_URL = `${BASE_URL}/members/sign_in${APP_PARAM}`;
-// const PARAM_URL = `${BASE_URL}${APP_PARAM}`;
+// const PARAM_URL = `${BASE_URL}/members/sign_in${APP_PARAM}`;
+const PARAM_URL = `${BASE_URL}${APP_PARAM}`;
 
 const ZweiWebview = () => {
   const [onAppStateChange] = useAppState();
@@ -87,6 +87,7 @@ const ZweiWebview = () => {
     const js = `
       window.document.getElementById('member_device_token').value = '${deviceToken}';
       window.document.getElementById('member_device_name').value = '${deviceType}';
+      window.document.getElementsByClassName('grecaptcha-badge')[0].style.display = 'none';
     `;
 
     return (
@@ -106,10 +107,17 @@ const ZweiWebview = () => {
         startInLoadingState={true}
         onShouldStartLoadWithRequest={(event) => {
           const { url } = event;
-          if (!url || url.includes(ORIGIN_URL)) return true;
+          if (
+            !url ||
+            url.includes(ORIGIN_URL) ||
+            url.includes("recaptcha.net")
+          ) {
+            webviewRef.current.injectJavaScript(js);
 
+            return true;
+          }
           // webviewRef.current.stopLoading();
-          Linking.openURL(event.url);
+          Linking.openURL(url);
           return false;
         }}
         renderLoading={renderLoadingIndicatorView}

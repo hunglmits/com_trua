@@ -1,10 +1,29 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import messaging from "@react-native-firebase/messaging";
 import { Alert } from "react-native";
 
 const useNotificationHandler = () => {
   const [notiData, setNotiData] = useState();
+  const [foregroundNotiData, setForegroundNotiData] = useState();
+
+  useEffect(() => {
+    if (!foregroundNotiData) return;
+
+    const data = foregroundNotiData?.data;
+    const noti = foregroundNotiData?.notification;
+
+    Alert.alert(noti?.title, noti?.body, [
+      {
+        text: "OK",
+        onPress: () => {
+          setNotiData(data);
+          setForegroundNotiData(null);
+        },
+      },
+      { text: "Cancel", onPress: () => setForegroundNotiData(null) },
+    ]);
+  }, [foregroundNotiData]);
 
   function onReceivedNotification() {
     const unsubscribeNotificationOpened = messaging().onNotificationOpenedApp(
@@ -23,13 +42,7 @@ const useNotificationHandler = () => {
   function onForegroundNotification() {
     const unsubscribeForegroundNotification = messaging().onMessage(
       async (item) => {
-        const data = item?.data;
-        const noti = item?.notification;
-
-        Alert.alert(noti?.title, noti?.body, [
-          { text: "OK", onPress: () => setNotiData(data) },
-          { text: "Cancel", onPress: () => {} },
-        ]);
+        setForegroundNotiData(item);
       }
     );
 

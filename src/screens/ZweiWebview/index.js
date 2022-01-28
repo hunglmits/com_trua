@@ -18,17 +18,18 @@ import {
 
 import messaging from "@react-native-firebase/messaging";
 
-const ORIGIN_URL = "stg4.zwei-test.com";
-const APP_PARAM = "?flag_app=true";
+const ORIGIN_URL = "dev.zwei-test.com";
+const APP_PARAM = "flag_app=true";
 const BASE_URL = `https://zwei-test:MsVfM7aVBf@${ORIGIN_URL}`;
 // const PARAM_URL = `${BASE_URL}/members/sign_in${APP_PARAM}`;
-const PARAM_URL = `${BASE_URL}${APP_PARAM}`;
+const PARAM_URL = `${BASE_URL}?${APP_PARAM}`;
 
 const ZweiWebview = () => {
   const [onAppStateChange] = useAppState();
   const { notificationHandler, notiData } = useNotificationHandler();
-  const { setBadge } = useShortcutBadge();
   notificationHandler();
+
+  const { setBadge } = useShortcutBadge();
 
   const [deviceToken, setDeviceToken] = useState("");
   const [deviceType, setDeviceType] = useState("");
@@ -43,8 +44,12 @@ const ZweiWebview = () => {
   }, []);
 
   useEffect(() => {
-    if (notiData?.url) {
-      setUrl(`${notiData?.url}${APP_PARAM}`);
+    const _notiUrl = notiData?.url;
+    if (_notiUrl) {
+      const _url = _notiUrl.includes("?")
+        ? `${_notiUrl}&${APP_PARAM}`
+        : `${_notiUrl}?${APP_PARAM}`;
+      setUrl(_url);
       return;
     }
     setUrl(PARAM_URL);

@@ -18,7 +18,7 @@ import {
 
 import messaging from "@react-native-firebase/messaging";
 
-const ORIGIN_URL = "dev.zwei-test.com";
+const ORIGIN_URL = "stg4.zwei-test.com";
 const APP_PARAM = "flag_app=true";
 const BASE_URL = `https://zwei-test:MsVfM7aVBf@${ORIGIN_URL}`;
 // const PARAM_URL = `${BASE_URL}/members/sign_in${APP_PARAM}`;
@@ -26,7 +26,8 @@ const PARAM_URL = `${BASE_URL}?${APP_PARAM}`;
 
 const ZweiWebview = () => {
   const [onAppStateChange] = useAppState();
-  const { notificationHandler, notiData } = useNotificationHandler();
+  const { notificationHandler, notiData, resetNotiData } =
+    useNotificationHandler();
   notificationHandler();
 
   const { setBadge } = useShortcutBadge();
@@ -34,8 +35,9 @@ const ZweiWebview = () => {
   const [deviceToken, setDeviceToken] = useState("");
   const [deviceType, setDeviceType] = useState("");
   const [url, setUrl] = useState(PARAM_URL);
-  const webviewRef = useRef();
+  const [webKey, setWebKey] = useState(0);
 
+  const webviewRef = useRef();
   useEffect(() => {
     initNotification();
     onAppStateChange({
@@ -44,15 +46,19 @@ const ZweiWebview = () => {
   }, []);
 
   useEffect(() => {
+    if (!notiData) return;
     const _notiUrl = notiData?.url;
     if (_notiUrl) {
       const _url = _notiUrl.includes("?")
         ? `${_notiUrl}&${APP_PARAM}`
         : `${_notiUrl}?${APP_PARAM}`;
-      setUrl(_url);
+
+      setUrl(_url.replace("http://", "https://"));
+      setWebKey(webKey + 1); //reset webview
+      resetNotiData();
       return;
     }
-    setUrl(PARAM_URL);
+    // setUrl(PARAM_URL);
   }, [notiData]);
 
   const onResetNotificationCount = useCallback(
@@ -97,6 +103,7 @@ const ZweiWebview = () => {
 
     return (
       <WebView
+        key={webKey}
         ref={webviewRef}
         source={{
           uri: url,
@@ -112,16 +119,16 @@ const ZweiWebview = () => {
         startInLoadingState={true}
         onShouldStartLoadWithRequest={(event) => {
           const { url } = event;
+          console.log("url-->", url);
           if (
             !url ||
             url.includes(ORIGIN_URL) ||
             url.includes("recaptcha.net")
           ) {
-            webviewRef.current.injectJavaScript(js);
+            url.includes("sign_in") && webviewRef.current.injectJavaScript(js);
 
             return true;
           }
-          // webviewRef.current.stopLoading();
           Linking.openURL(url);
           return false;
         }}

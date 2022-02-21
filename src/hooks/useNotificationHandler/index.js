@@ -25,6 +25,10 @@ const useNotificationHandler = () => {
     ]);
   }, [foregroundNotiData]);
 
+  function resetNotiData() {
+    setNotiData(null);
+  }
+
   function onReceivedNotification() {
     const unsubscribeNotificationOpened = messaging().onNotificationOpenedApp(
       async (item) => {
@@ -64,6 +68,7 @@ const useNotificationHandler = () => {
   return {
     notificationHandler,
     notiData,
+    resetNotiData,
   };
 };
 

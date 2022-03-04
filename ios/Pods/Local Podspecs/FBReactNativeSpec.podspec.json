@@ -43,16 +43,16 @@
   "script_phases": {
     "name": "Generate Specs",
     "input_files": [
-      "/Volumes/Job/ITS/zwei-app/node_modules/react-native/scripts/../Libraries"
+      "/Users/sybui/Desktop/job/zwei-app/node_modules/react-native/scripts/../Libraries"
     ],
     "output_files": [
       "$(DERIVED_FILE_DIR)/codegen-FBReactNativeSpec.log",
-      "/Volumes/Job/ITS/zwei-app/node_modules/react-native/scripts/../React/FBReactNativeSpec/FBReactNativeSpec/FBReactNativeSpec.h",
-      "/Volumes/Job/ITS/zwei-app/node_modules/react-native/scripts/../React/FBReactNativeSpec/FBReactNativeSpec/FBReactNativeSpec-generated.mm"
+      "/Users/sybui/Desktop/job/zwei-app/node_modules/react-native/scripts/../React/FBReactNativeSpec/FBReactNativeSpec/FBReactNativeSpec.h",
+      "/Users/sybui/Desktop/job/zwei-app/node_modules/react-native/scripts/../React/FBReactNativeSpec/FBReactNativeSpec/FBReactNativeSpec-generated.mm"
     ],
-    "script": "set -o pipefail\n\nbash -l -c 'SRCS_DIR=/Volumes/Job/ITS/zwei-app/node_modules/react-native/scripts/../Libraries CODEGEN_MODULES_OUTPUT_DIR=/Volumes/Job/ITS/zwei-app/node_modules/react-native/scripts/../React/FBReactNativeSpec/FBReactNativeSpec CODEGEN_MODULES_LIBRARY_NAME=FBReactNativeSpec /Volumes/Job/ITS/zwei-app/node_modules/react-native/scripts/generate-specs.sh' 2>&1 | tee \"${SCRIPT_OUTPUT_FILE_0}\"",
+    "script": "set -o pipefail\n\nbash -l -c 'SRCS_DIR=/Users/sybui/Desktop/job/zwei-app/node_modules/react-native/scripts/../Libraries CODEGEN_MODULES_OUTPUT_DIR=/Users/sybui/Desktop/job/zwei-app/node_modules/react-native/scripts/../React/FBReactNativeSpec/FBReactNativeSpec CODEGEN_MODULES_LIBRARY_NAME=FBReactNativeSpec /Users/sybui/Desktop/job/zwei-app/node_modules/react-native/scripts/generate-specs.sh' 2>&1 | tee \"${SCRIPT_OUTPUT_FILE_0}\"",
     "execution_position": "before_compile",
     "show_env_vars_in_log": true
   },
-  "prepare_command": "mkdir -p /Volumes/Job/ITS/zwei-app/node_modules/react-native/scripts/../React/FBReactNativeSpec/FBReactNativeSpec && touch /Volumes/Job/ITS/zwei-app/node_modules/react-native/scripts/../React/FBReactNativeSpec/FBReactNativeSpec/FBReactNativeSpec.h /Volumes/Job/ITS/zwei-app/node_modules/react-native/scripts/../React/FBReactNativeSpec/FBReactNativeSpec/FBReactNativeSpec-generated.mm"
+  "prepare_command": "mkdir -p /Users/sybui/Desktop/job/zwei-app/node_modules/react-native/scripts/../React/FBReactNativeSpec/FBReactNativeSpec && touch /Users/sybui/Desktop/job/zwei-app/node_modules/react-native/scripts/../React/FBReactNativeSpec/FBReactNativeSpec/FBReactNativeSpec.h /Users/sybui/Desktop/job/zwei-app/node_modules/react-native/scripts/../React/FBReactNativeSpec/FBReactNativeSpec/FBReactNativeSpec-generated.mm"
 }

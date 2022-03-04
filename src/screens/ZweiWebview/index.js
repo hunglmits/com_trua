@@ -1,3 +1,5 @@
+/** @format */
+
 // import analytics from '@react-native-firebase/analytics'
 import React, { useState, useCallback, useEffect, useRef } from "react";
 import {
@@ -18,7 +20,7 @@ import {
 
 import messaging from "@react-native-firebase/messaging";
 
-const ORIGIN_URL = "stg4.zwei-test.com";
+const ORIGIN_URL = "dev.zwei-test.com";
 const APP_PARAM = "flag_app=true";
 const BASE_URL = `https://zwei-test:MsVfM7aVBf@${ORIGIN_URL}`;
 // const PARAM_URL = `${BASE_URL}/members/sign_in${APP_PARAM}`;
@@ -38,6 +40,26 @@ const ZweiWebview = () => {
   const [webKey, setWebKey] = useState(0);
 
   const webviewRef = useRef();
+
+  useEffect(() => {
+    // Check whether an initial notification is available
+    messaging()
+      .getInitialNotification()
+      .then((remoteMessage) => {
+        if (remoteMessage) {
+          const _notiUrl = remoteMessage?.data.url;
+          const _url = _notiUrl.includes("?")
+            ? `${_notiUrl}&${APP_PARAM}`
+            : `${_notiUrl}?${APP_PARAM}`;
+          const sliceUrl = _url.slice(8);
+          const openUrl = "https://zwei-test:MsVfM7aVBf@" + sliceUrl;
+          setUrl(openUrl);
+          // setInitialRoute(remoteMessage.data.type) // e.g. "Settings"
+        }
+        // setLoading(false)
+      });
+  }, []);
+
   useEffect(() => {
     initNotification();
     onAppStateChange({
@@ -53,6 +75,8 @@ const ZweiWebview = () => {
         ? `${_notiUrl}&${APP_PARAM}`
         : `${_notiUrl}?${APP_PARAM}`;
 
+      console.log(url, "open aPP kjkkkkkkkkkkkß");
+
       setUrl(_url.replace("http://", "https://"));
       setWebKey(webKey + 1); //reset webview
       resetNotiData();
@@ -64,6 +88,7 @@ const ZweiWebview = () => {
   const onResetNotificationCount = useCallback(
     (token = deviceToken) => {
       setBadge(0);
+      console.log(deviceToken);
       fetch(
         `${BASE_URL}/api/v1/members/reset_notify?device_token=${
           token || deviceToken

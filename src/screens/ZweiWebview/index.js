@@ -47,6 +47,7 @@ const ZweiWebview = () => {
       .getInitialNotification()
       .then((remoteMessage) => {
         if (remoteMessage) {
+          console.log(remoteMessage, "vjhvjvjvjhvjh");
           const _notiUrl = remoteMessage?.data.url;
           const _url = _notiUrl.includes("?")
             ? `${_notiUrl}&${APP_PARAM}`

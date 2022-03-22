@@ -4,6 +4,9 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
+    "android-release": "react-native run-android --variant=release",
+    "release-apk": "cd android && ./gradlew assembleRelease",
+    "release-abb": "cd android && ./gradlew bundleRelease",
     "ios": "react-native run-ios",
     "start": "react-native start --reset-cache",
     "test": "jest",

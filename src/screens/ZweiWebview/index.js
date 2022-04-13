@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Platform,
   ActivityIndicator,
+  Text,
   Linking,
 } from "react-native";
 
@@ -20,7 +21,11 @@ import {
 
 import messaging from "@react-native-firebase/messaging";
 
-const ORIGIN_URL = "dev.zwei-test.com";
+const ORIGIN_URL = "stg4.zwei-test.com";
+const ORIGIN_URL_SIGN_IN = `https://${ORIGIN_URL}/members/sign_in`;
+const ORIGIN_URL_SIGN_OUT = `https://${ORIGIN_URL}/members/sign_out`;
+const ORIGIN_URL_NEWS = `https://${ORIGIN_URL}/news`;
+const ORIGIN_URL_PASSWORD_NEWS = `https://${ORIGIN_URL}/members/password/new`;
 const APP_PARAM = "flag_app=true";
 const BASE_URL = `https://zwei-test:MsVfM7aVBf@${ORIGIN_URL}`;
 // const PARAM_URL = `${BASE_URL}/members/sign_in${APP_PARAM}`;
@@ -47,7 +52,6 @@ const ZweiWebview = () => {
       .getInitialNotification()
       .then((remoteMessage) => {
         if (remoteMessage) {
-          console.log(remoteMessage, "vjhvjvjvjhvjh");
           const _notiUrl = remoteMessage?.data.url;
           const _url = _notiUrl.includes("?")
             ? `${_notiUrl}&${APP_PARAM}`
@@ -75,9 +79,6 @@ const ZweiWebview = () => {
       const _url = _notiUrl.includes("?")
         ? `${_notiUrl}&${APP_PARAM}`
         : `${_notiUrl}?${APP_PARAM}`;
-
-      console.log(url, "open aPP kjkkkkkkkkkkkß");
-
       setUrl(_url.replace("http://", "https://"));
       setWebKey(webKey + 1); //reset webview
       resetNotiData();
@@ -86,10 +87,23 @@ const ZweiWebview = () => {
     // setUrl(PARAM_URL);
   }, [notiData]);
 
+  const onNavigationStateChange = (webViewState) => {
+    const { url } = webViewState;
+    console.log(url, "asklndvladsnklv");
+    if (!url.includes("?flag_app=true")) {
+      if (
+        url === ORIGIN_URL_SIGN_IN ||
+        url === ORIGIN_URL_NEWS ||
+        url === ORIGIN_URL_PASSWORD_NEWS
+      ) {
+        setUrl(url + "?flag_app=true");
+      }
+    }
+  };
+
   const onResetNotificationCount = useCallback(
     (token = deviceToken) => {
       setBadge(0);
-      console.log(deviceToken);
       fetch(
         `${BASE_URL}/api/v1/members/reset_notify?device_token=${
           token || deviceToken
@@ -124,7 +138,7 @@ const ZweiWebview = () => {
     const js = `
       window.document.getElementById('member_device_token').value = '${deviceToken}';
       window.document.getElementById('member_device_name').value = '${deviceType}';
-      window.document.getElementsByClassName('grecaptcha-badge')[0].style.display = 'none';
+      document.querySelector('.grecaptcha-badge').style.display = 'none';
     `;
 
     return (
@@ -137,6 +151,7 @@ const ZweiWebview = () => {
         style={styles.webview}
         showsVerticalScrollIndicator={false}
         javaScriptEnabled={true}
+        onNavigationStateChange={onNavigationStateChange}
         javaScriptEnabledAndroid={true}
         onMessage={(event) => {
           console.log("event-->", event);
@@ -145,7 +160,25 @@ const ZweiWebview = () => {
         startInLoadingState={true}
         onShouldStartLoadWithRequest={(event) => {
           const { url } = event;
-          console.log("url-->", url);
+          if (
+            Platform.OS === "android" &&
+            url &&
+            !url.includes("?flag_app=true")
+          ) {
+            if (
+              url === ORIGIN_URL_SIGN_IN ||
+              url === ORIGIN_URL_NEWS ||
+              url === ORIGIN_URL_PASSWORD_NEWS
+            ) {
+              setUrl(url + "?flag_app=true");
+            } else {
+              setUrl(url);
+            }
+          }
+          // if (url && url.includes("?flag_app=true")) {
+          //   setUrl(url);
+          // }
+
           if (
             !url ||
             url.includes(ORIGIN_URL) ||

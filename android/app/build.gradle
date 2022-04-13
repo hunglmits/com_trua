@@ -134,7 +134,7 @@ android {
         applicationId "jp.zwei.application"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 18
+        versionCode 31
         versionName "1.1"
     }
     splits {

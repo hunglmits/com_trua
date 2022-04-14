@@ -1,3 +1,5 @@
+/** @format */
+
 import { useCallback, useEffect, useState } from "react";
 
 import messaging from "@react-native-firebase/messaging";
@@ -15,13 +17,13 @@ const useNotificationHandler = () => {
 
     Alert.alert(noti?.title, noti?.body, [
       {
-        text: "OK",
+        text: "確認する",
         onPress: () => {
           setNotiData(data);
           setForegroundNotiData(null);
         },
       },
-      { text: "Cancel", onPress: () => setForegroundNotiData(null) },
+      { text: "あとで見る", onPress: () => setForegroundNotiData(null) },
     ]);
   }, [foregroundNotiData]);
 

@@ -34,9 +34,11 @@
       <sourceFolder url="file://$MODULE_DIR$/../../../app/src/main/res" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/rncli/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/ap_generated_sources/release/out" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/ap_generated_sources/release/out" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/res/google-services/release" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/res/react/release" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/res/resValues/release" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/source/buildConfig/release" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/source/buildConfig/release" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../app/src/main/assets" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/../../../app/src/main/assets" type="java-resource" />
@@ -96,16 +98,9 @@
     <orderEntry type="library" name="Gradle: com.facebook.fresco:nativeimagefilters:2.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.facebook.fresco:nativeimagetranscoder:2.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.facebook.fresco:imagepipeline-okhttp3:2.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.microsoft.appcenter.reactnative:appcenter-react-native:4.0.2@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.microsoft.appcenter:appcenter-analytics:4.1.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.microsoft.appcenter:appcenter-crashes:4.1.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: com.microsoft.appcenter:appcenter:4.1.0@aar" level="project" />
     <orderEntry type="module" module-name="zwei_app.react-native-firebase_messaging" />
     <orderEntry type="module" module-name="zwei_app.react-native-firebase_app" />
-    <orderEntry type="module" module-name="zwei_app.appcenter" />
-    <orderEntry type="module" module-name="zwei_app.appcenter-analytics" />
-    <orderEntry type="module" module-name="zwei_app.appcenter-crashes" />
-    <orderEntry type="module" module-name="zwei_app.react-native-shortcut-badge" />
+    <orderEntry type="module" module-name="android.zwei_app.react-native-shortcut-badge" />
     <orderEntry type="module" module-name="zwei_app.react-native-webview" />
   </component>
 </module>

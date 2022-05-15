@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1759208077/app.zwei_app.react-native-code-push.iml" filepath="$PROJECT_DIR$/.idea/modules/1759208077/app.zwei_app.react-native-code-push.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/417167135/android.zwei_app.react-native-shortcut-badge.iml" filepath="$PROJECT_DIR$/.idea/modules/417167135/android.zwei_app.react-native-shortcut-badge.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/zwei_app.iml" filepath="$PROJECT_DIR$/.idea/modules/zwei_app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/zwei_app.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/zwei_app.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/959291565/zwei_app.appcenter.iml" filepath="$PROJECT_DIR$/.idea/modules/959291565/zwei_app.appcenter.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1851418266/zwei_app.appcenter-analytics.iml" filepath="$PROJECT_DIR$/.idea/modules/-1851418266/zwei_app.appcenter-analytics.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/328909173/zwei_app.appcenter-crashes.iml" filepath="$PROJECT_DIR$/.idea/modules/328909173/zwei_app.appcenter-crashes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1325708759/zwei_app.react-native-code-push.iml" filepath="$PROJECT_DIR$/.idea/modules/-1325708759/zwei_app.react-native-code-push.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1679621078/zwei_app.react-native-firebase_app.iml" filepath="$PROJECT_DIR$/.idea/modules/-1679621078/zwei_app.react-native-firebase_app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/680201037/zwei_app.react-native-firebase_messaging.iml" filepath="$PROJECT_DIR$/.idea/modules/680201037/zwei_app.react-native-firebase_messaging.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1560308539/zwei_app.react-native-shortcut-badge.iml" filepath="$PROJECT_DIR$/.idea/modules/1560308539/zwei_app.react-native-shortcut-badge.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-547237190/zwei_app.react-native-webview.iml" filepath="$PROJECT_DIR$/.idea/modules/-547237190/zwei_app.react-native-webview.iml" />
     </modules>
   </component>

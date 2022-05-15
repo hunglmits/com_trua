@@ -62,3 +62,5 @@ ios/Pods
 node_modules/
 android/java_pid65472.hprof
 android/app/release/
+android/app/build
+android/.gradle

@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:125526134582:android:c02163e8cc38fc981d6d97",
         "android_client_info": {
-          "package_name": "jp.zwei.application"
+          "package_name": "jp.zwei.android"
         }
       },
       "oauth_client": [
@@ -34,7 +34,7 @@
               "client_id": "125526134582-bkcmcohggf394pf89kfj8otmq3aqjg15.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "jp.zwei.application"
+                "bundle_id": "jp.zwei.android"
               }
             }
           ]

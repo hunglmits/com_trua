@@ -1,4 +1,4 @@
-package com.zwei_app;
+package com.zwei_app.android;
 
 import com.facebook.react.ReactActivity;
 

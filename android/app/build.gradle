@@ -131,7 +131,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "jp.zwei.application"
+        applicationId "jp.zwei.android"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

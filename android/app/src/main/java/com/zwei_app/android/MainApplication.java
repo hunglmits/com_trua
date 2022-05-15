@@ -1,4 +1,4 @@
-package com.zwei_app;
+package com.zwei_app.android;
 
 import android.app.Application;
 import android.content.Context;

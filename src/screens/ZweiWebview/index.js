@@ -21,7 +21,7 @@ import {
 
 import messaging from "@react-native-firebase/messaging";
 
-const ORIGIN_URL = "dev.zwei-test.com";
+const ORIGIN_URL = "stg4.zwei-test.com";
 const ORIGIN_URL_SIGN_IN = `https://${ORIGIN_URL}/members/sign_in`;
 const ORIGIN_URL_NEWS = `https://${ORIGIN_URL}/news`;
 const ORIGIN_URL_PASSWORD_NEWS = `https://${ORIGIN_URL}/members/password/new`;
@@ -153,6 +153,13 @@ const ZweiWebview = () => {
         javaScriptEnabledAndroid={true}
         onMessage={(event) => {
           console.log("event-->", event);
+        }}
+
+        onLoadEnd={(syntheticEvent) => {
+          // update component to be aware of loading status
+          const { nativeEvent } = syntheticEvent;
+          const { url } = nativeEvent
+          setUrl(url)
         }}
         injectedJavaScript={js}
         startInLoadingState={true}

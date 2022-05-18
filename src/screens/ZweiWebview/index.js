@@ -21,7 +21,7 @@ import {
 
 import messaging from "@react-native-firebase/messaging";
 
-const ORIGIN_URL = "stg4.zwei-test.com";
+const ORIGIN_URL = "app.zwei.ne.jp";
 const ORIGIN_URL_SIGN_IN = `https://${ORIGIN_URL}/members/sign_in`;
 const ORIGIN_URL_SIGN_OUT = `https://${ORIGIN_URL}/members/sign_out`;
 const ORIGIN_URL_NEWS = `https://${ORIGIN_URL}/news`;

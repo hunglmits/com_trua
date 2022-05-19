@@ -21,6 +21,11 @@ import {
 
 import messaging from "@react-native-firebase/messaging";
 
+// TODO: STG4
+// const ORIGIN_URL = "stg4.zwei-test.com";
+// TODO: DEV
+// const ORIGIN_URL = "dev.zwei-test.com";
+// TODO: Product
 const ORIGIN_URL = "app.zwei.ne.jp";
 const ORIGIN_URL_SIGN_IN = `https://${ORIGIN_URL}/members/sign_in`;
 const ORIGIN_URL_SIGN_OUT = `https://${ORIGIN_URL}/members/sign_out`;
@@ -155,19 +160,12 @@ const ZweiWebview = () => {
         onMessage={(event) => {
           console.log("event-->", event);
         }}
-
-        onLoadEnd={(syntheticEvent) => {
-          // update component to be aware of loading status
-          const { nativeEvent } = syntheticEvent;
-          const { url } = nativeEvent
-          setUrl(url)
-        }}
         injectedJavaScript={js}
         startInLoadingState={true}
         onShouldStartLoadWithRequest={(event) => {
           const { url } = event;
 
-          console.log(url,'abscklbaskcj')
+          console.log('Loading: ' + url)
           if (
             Platform.OS === "android" &&
             url &&
@@ -186,6 +184,7 @@ const ZweiWebview = () => {
           // if (url && url.includes("?flag_app=true")) {
           //   setUrl(url);
           // }
+          console.log('Opening: ' + url)
 
           if (
             !url ||

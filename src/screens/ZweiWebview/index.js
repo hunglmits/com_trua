@@ -24,9 +24,9 @@ import messaging from "@react-native-firebase/messaging";
 // TODO: STG4
 // const ORIGIN_URL = "stg4.zwei-test.com";
 // TODO: DEV
-// const ORIGIN_URL = "dev.zwei-test.com";
+const ORIGIN_URL = "dev.zwei-test.com";
 // TODO: Product
-const ORIGIN_URL = "app.zwei.ne.jp";
+// const ORIGIN_URL = "app.zwei.ne.jp";
 const ORIGIN_URL_SIGN_IN = `https://${ORIGIN_URL}/members/sign_in`;
 const ORIGIN_URL_SIGN_OUT = `https://${ORIGIN_URL}/members/sign_out`;
 const ORIGIN_URL_NEWS = `https://${ORIGIN_URL}/news`;
@@ -69,6 +69,7 @@ const ZweiWebview = () => {
         // setLoading(false)
       });
   }, []);
+  
 
   useEffect(() => {
     initNotification();
@@ -96,6 +97,7 @@ const ZweiWebview = () => {
     const { url } = webViewState;
     if (!url.includes("?flag_app=true")) {
       if (
+        url === ORIGIN_URL ||
         url === ORIGIN_URL_SIGN_IN ||
         url === ORIGIN_URL_NEWS ||
         url === ORIGIN_URL_PASSWORD_NEWS
@@ -172,6 +174,7 @@ const ZweiWebview = () => {
             !url.includes("?flag_app=true")
           ) {
             if (
+              url === ORIGIN_URL ||
               url === ORIGIN_URL_SIGN_IN ||
               url === ORIGIN_URL_NEWS ||
               url === ORIGIN_URL_PASSWORD_NEWS

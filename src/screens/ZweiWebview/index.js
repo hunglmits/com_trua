@@ -22,9 +22,13 @@ import {
 import messaging from "@react-native-firebase/messaging";
 
 // TODO: STG4
-const ORIGIN_URL = "stg4.zwei-test.com";
+// const ORIGIN_URL = "stg4.zwei-test.com";
 // TODO: DEV
 // const ORIGIN_URL = "dev.zwei-test.com";
+// TODO: STG5-3
+// const ORIGIN_URL = "stg5-3.zwei-test.com";
+// TODO: Localhost
+const ORIGIN_URL = "192.168.1.127:3001";
 // TODO: Product
 // const ORIGIN_URL = "app.zwei.ne.jp";
 const ORIGIN_URL_SIGN_IN = `https://${ORIGIN_URL}/members/sign_in`;

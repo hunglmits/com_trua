@@ -181,7 +181,7 @@ const ZweiWebview = () => {
                             method: 'POST',
                             body: paymentParams.body
                         });
-                        return;
+                        return false;
                     }
                     console.log('Loading: ' + url)
                     if (

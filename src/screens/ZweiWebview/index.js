@@ -29,16 +29,25 @@ import messaging from "@react-native-firebase/messaging";
 // const ORIGIN_URL = "stg5-3.zwei-test.com";
 // TODO: Localhost
 const ORIGIN_URL = "192.168.1.127:3001";
+const ORIGIN_URL_SIGN_IN = `http://${ORIGIN_URL}/members/sign_in`;
+const ORIGIN_URL_SIGN_OUT = `http://${ORIGIN_URL}/members/sign_out`;
+const ORIGIN_URL_NEWS = `http://${ORIGIN_URL}/news`;
+const ORIGIN_URL_PASSWORD_NEWS = `http://${ORIGIN_URL}/members/password/new`;
+const APP_PARAM = "flag_app=true";
+const BASE_URL = `http://${ORIGIN_URL}`;
+const PARAM_URL = `${BASE_URL}?${APP_PARAM}`;
 // TODO: Product
 // const ORIGIN_URL = "app.zwei.ne.jp";
-const ORIGIN_URL_SIGN_IN = `https://${ORIGIN_URL}/members/sign_in`;
-const ORIGIN_URL_SIGN_OUT = `https://${ORIGIN_URL}/members/sign_out`;
-const ORIGIN_URL_NEWS = `https://${ORIGIN_URL}/news`;
-const ORIGIN_URL_PASSWORD_NEWS = `https://${ORIGIN_URL}/members/password/new`;
-const APP_PARAM = "flag_app=true";
-const BASE_URL = `https://zwei-test:MsVfM7aVBf@${ORIGIN_URL}`;
-// const PARAM_URL = `${BASE_URL}/members/sign_in${APP_PARAM}`;
-const PARAM_URL = `${BASE_URL}?${APP_PARAM}`;
+
+// const ORIGIN_URL_SIGN_IN = `https://${ORIGIN_URL}/members/sign_in`;
+// const ORIGIN_URL_SIGN_OUT = `https://${ORIGIN_URL}/members/sign_out`;
+// const ORIGIN_URL_NEWS = `https://${ORIGIN_URL}/news`;
+// const ORIGIN_URL_PASSWORD_NEWS = `https://${ORIGIN_URL}/members/password/new`;
+// const APP_PARAM = "flag_app=true";
+// const BASE_URL = `https://zwei-test:MsVfM7aVBf@${ORIGIN_URL}`;
+// const PARAM_URL = `${BASE_URL}?${APP_PARAM}`;
+
+let paymentParams;
 
 const ZweiWebview = () => {
   const [onAppStateChange] = useAppState();
@@ -52,6 +61,7 @@ const ZweiWebview = () => {
   const [deviceType, setDeviceType] = useState("");
   const [url, setUrl] = useState(PARAM_URL);
   const [webKey, setWebKey] = useState(0);
+  const [webviewUri, setWebviewUri] = useState();
 
   const webviewRef = useRef();
 
@@ -66,7 +76,9 @@ const ZweiWebview = () => {
             ? `${_notiUrl}&${APP_PARAM}`
             : `${_notiUrl}?${APP_PARAM}`;
           const sliceUrl = _url.slice(8);
-          const openUrl = "https://zwei-test:MsVfM7aVBf@" + sliceUrl;
+          // TODO: Localhost
+          // const openUrl = "https://zwei-test:MsVfM7aVBf@" + sliceUrl;
+          const openUrl = "http://" + sliceUrl;
           setUrl(openUrl);
           // setInitialRoute(remoteMessage.data.type) // e.g. "Settings"
         }
@@ -89,7 +101,8 @@ const ZweiWebview = () => {
       const _url = _notiUrl.includes("?")
         ? `${_notiUrl}&${APP_PARAM}`
         : `${_notiUrl}?${APP_PARAM}`;
-      setUrl(_url.replace("http://", "https://"));
+      // TODO: Localhost
+      // setUrl(_url.replace("http://", "https://"));
       setWebKey(webKey + 1); //reset webview
       resetNotiData();
       return;
@@ -146,6 +159,7 @@ const ZweiWebview = () => {
 
   const renderWebview = () => {
     const js = `
+      window.ReactNativeWebView.postMessage(document.getElementById("payment_json_data"));
       window.document.getElementById('member_device_token').value = '${deviceToken}';
       window.document.getElementById('member_device_name').value = '${deviceType}';
       document.querySelector('.grecaptcha-badge').style.display = 'none';
@@ -155,7 +169,7 @@ const ZweiWebview = () => {
       <WebView
         key={webKey}
         ref={webviewRef}
-        source={{
+        source={webviewUri ?? {
           uri: url,
         }}
         style={styles.webview}
@@ -165,12 +179,21 @@ const ZweiWebview = () => {
         javaScriptEnabledAndroid={true}
         onMessage={(event) => {
           console.log("event-->", event);
+          if(event.nativeEvent.data) {
+            paymentParams = JSON.parse(event.nativeEvent.data);
+          }
         }}
         injectedJavaScript={js}
         startInLoadingState={true}
         onShouldStartLoadWithRequest={(event) => {
           const { url } = event;
-
+          if(url.includes("cards?click_action=open_payment")) {
+            setWebviewUri({
+              uri: paymentParams.action,
+              method: 'POST',
+              body: paymentParams.body
+            })
+          }
           console.log('Loading: ' + url)
           if (
             Platform.OS === "android" &&

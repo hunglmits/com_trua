@@ -234,9 +234,18 @@ const ZweiWebview = () => {
                     }
                     console.log('Opening: ' + url)
 
+                    if (
+                        !url ||
+                        url.includes(ORIGIN_URL) ||
+                        url.includes(ORIGIN_URL) ||
+                        url.includes("cards")
+                    ) {
                         url.includes("sign_in") && webviewRef.current.injectJavaScript(js);
 
                         return true;
+                    }
+                    Linking.openURL(url);
+                    return false;
                 }}
                 renderLoading={renderLoadingIndicatorView}
                 allowsBackForwardNavigationGestures={true}

@@ -232,8 +232,6 @@ const ZweiWebview = () => {
                             setUrl(url);
                         }
                     }
-                    console.log('Opening: ' + url)
-
                     if (
                         !url ||
                         url.includes(ORIGIN_URL) ||
@@ -241,9 +239,10 @@ const ZweiWebview = () => {
                         url.includes("cards")
                     ) {
                         url.includes("sign_in") && webviewRef.current.injectJavaScript(js);
-
+                        console.log('Opening url: ' + url)
                         return true;
                     }
+                    console.log('Opening link: ' + url);
                     Linking.openURL(url);
                     return false;
                 }}

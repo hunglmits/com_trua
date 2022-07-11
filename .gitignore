@@ -25,7 +25,6 @@ project.xcworkspace
 
 # Android/IntelliJ
 #
-build/
 .idea
 .gradle
 local.properties
@@ -59,8 +58,8 @@ buck-out/
 
 ios/Pods
 .vscode/
-node_modules/
 android/java_pid65472.hprof
 android/app/release/
 android/app/build
-android/.gradle
+android/.gradle/
+android/.idea/

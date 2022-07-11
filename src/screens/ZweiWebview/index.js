@@ -146,16 +146,35 @@ const ZweiWebview = () => {
 
     const renderWebview = () => {
         const js = `
-      if (document.location.href.includes('WRP03010Action_doInit.action')) {
-        let btn = document.createElement("div");
-        btn.innerHTML = '<div class="block_btn_back is_app"><button class="btn btn-outline-success" id="back_link" onclick="history.back();window.ReactNativeWebView.postMessage('on_back_payment');" type="button">もどる</button></div>';
-        let body = document.getElementById("WRP02020Action").parentNode;
-        body.insertBefore(btn, body.children[0]);
-      }
-      window.ReactNativeWebView.postMessage(document.getElementById('payment_json_data').innerHTML);
-      window.document.getElementById('member_device_token').value = '${deviceToken}';
-      window.document.getElementById('member_device_name').value = '${deviceType}';
-      document.querySelector('.grecaptcha-badge').style.display = 'none';
+        addPaymentBackButton();
+        postPaymentDataMessage();
+        setToken();
+        
+        function onBackPayment() {
+            history.back();
+            window.ReactNativeWebView.postMessage('on_back_payment');
+        }
+        function postPaymentDataMessage() {
+            if (document.location.href.includes('cards')) {
+                window.ReactNativeWebView.postMessage(document.getElementById('payment_json_data').innerHTML);
+            }
+        }
+        function setToken() {
+            window.document.getElementById('member_device_token').value = '${deviceToken}';
+            window.document.getElementById('member_device_name').value = '${deviceType}';
+            document.querySelector('.grecaptcha-badge').style.display = 'none';
+        }
+        function addPaymentBackButton() {
+            if (document.location.href.includes('WRP03010Action_doInit.action')) {
+                let btn = document.createElement("div");
+                btn.innerHTML = '<button>もどる</button>';
+                btn.onclick = function(){
+                    onBackPayment();
+                };
+                let body = document.getElementsByTagName('body')[0];
+                body.insertBefore(btn, body.children[0]);
+            }
+        }
     `;
 
         return (

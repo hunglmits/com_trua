@@ -10,11 +10,11 @@ import {useAppState, useNotificationHandler, useShortcutBadge,} from "../../hook
 import messaging from "@react-native-firebase/messaging";
 
 // TODO: STG4
-// const ORIGIN_URL = "stg4.zwei-test.com";
+const ORIGIN_URL = "stg4.zwei-test.com";
 // TODO: DEV
 // const ORIGIN_URL = "dev.zwei-test.com";
 // TODO: STG5-3
-const ORIGIN_URL = "stg5-3.zwei-test.com";
+// const ORIGIN_URL = "stg5-3.zwei-test.com";
 // TODO: Product
 // const ORIGIN_URL = "app.zwei.ne.jp";
 // TODO: Localhost
@@ -147,6 +147,12 @@ const ZweiWebview = () => {
 
     const renderWebview = () => {
         const js = `
+      if (document.location.href.includes('WRP03010Action_doInit.action')) {
+        let btn = document.createElement("div");
+        btn.innerHTML = '<div class="block_btn_back is_app"><button class="btn btn-outline-success" id="back_link" onclick="history.back();" type="button">もどる</button></div>';
+        let body = document.getElementById("WRP02020Action").parentNode;
+        body.insertBefore(btn, body.children[0]);
+      }
       window.ReactNativeWebView.postMessage(document.getElementById('payment_json_data').innerHTML);
       window.document.getElementById('member_device_token').value = '${deviceToken}';
       window.document.getElementById('member_device_name').value = '${deviceType}';

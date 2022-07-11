@@ -93,7 +93,6 @@ const ZweiWebview = () => {
             setUrl(_url.replace("http://", "https://"));
             setWebKey(webKey + 1); //reset webview
             resetNotiData();
-            return;
         }
         // setUrl(PARAM_URL);
     }, [notiData]);
@@ -149,7 +148,7 @@ const ZweiWebview = () => {
         const js = `
       if (document.location.href.includes('WRP03010Action_doInit.action')) {
         let btn = document.createElement("div");
-        btn.innerHTML = '<div class="block_btn_back is_app"><button class="btn btn-outline-success" id="back_link" onclick="history.back();" type="button">もどる</button></div>';
+        btn.innerHTML = '<div class="block_btn_back is_app"><button class="btn btn-outline-success" id="back_link" onclick="history.back();window.ReactNativeWebView.postMessage('on_back_payment');" type="button">もどる</button></div>';
         let body = document.getElementById("WRP02020Action").parentNode;
         body.insertBefore(btn, body.children[0]);
       }
@@ -175,6 +174,11 @@ const ZweiWebview = () => {
                     console.log("event-->", event);
                     if (event.nativeEvent.url.includes('cards') && typeof event.nativeEvent.data != "undefined") {
                         paymentParams = JSON.parse(event.nativeEvent.data);
+                    }
+                    if (event.nativeEvent.url.includes('WRP03010Action_doInit.action') && typeof event.nativeEvent.data != "undefined") {
+                        if(event.nativeEvent.data.includes('on_back_payment')) {
+                            setWebviewUri(null);
+                        }
                     }
                 }}
                 injectedJavaScript={js}

@@ -190,11 +190,12 @@ const ZweiWebview = () => {
                 showsVerticalScrollIndicator={false}
                 javaScriptEnabled={true}
                 onNavigationStateChange={onNavigationStateChange}
-                javaScriptEnabledAndroid={true}
+                javaScriptCanOpenWindowsAutomatically={true}
                 onMessage={(event) => {
                     console.log("event-->", event);
                     if (event.nativeEvent.url.includes('cards') && typeof event.nativeEvent.data != "undefined") {
                         paymentParams = JSON.parse(event.nativeEvent.data);
+                        console.log("paymentParams-->", paymentParams);
                     }
                     if (event.nativeEvent.url.includes('WRP03010Action_doInit.action') && typeof event.nativeEvent.data != "undefined") {
                         if(event.nativeEvent.data.includes('on_back_payment')) {
@@ -233,17 +234,9 @@ const ZweiWebview = () => {
                     }
                     console.log('Opening: ' + url)
 
-                    if (
-                        !url ||
-                        url.includes(ORIGIN_URL) ||
-                        url.includes("recaptcha.net")
-                    ) {
                         url.includes("sign_in") && webviewRef.current.injectJavaScript(js);
 
                         return true;
-                    }
-                    Linking.openURL(url);
-                    return false;
                 }}
                 renderLoading={renderLoadingIndicatorView}
                 allowsBackForwardNavigationGestures={true}

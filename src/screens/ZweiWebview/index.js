@@ -28,7 +28,7 @@ const ORIGIN_URL = "stg5-3.zwei-test.com";
 // const PARAM_URL = `${BASE_URL}?${APP_PARAM}`;
 
 const ORIGIN_URL_SIGN_IN = `https://${ORIGIN_URL}/members/sign_in`;
-const ORIGIN_URL_SIGN_OUT = `https://${ORIGIN_URL}/members/sign_out`;
+const ORIGIN_URL_CARDS = `https://${ORIGIN_URL}/cards`;
 const ORIGIN_URL_NEWS = `https://${ORIGIN_URL}/news`;
 const ORIGIN_URL_PASSWORD_NEWS = `https://${ORIGIN_URL}/members/password/new`;
 const APP_PARAM = "flag_app=true";
@@ -99,11 +99,13 @@ const ZweiWebview = () => {
 
     const onNavigationStateChange = (webViewState) => {
         const {url} = webViewState;
-        if (!url.includes("?flag_app=true")) {
+        console.log("onNavigationStateChange-->", url);
+        if (!url.includes("flag_app=true")) {
             if (
                 url === ORIGIN_URL ||
                 url === ORIGIN_URL_SIGN_IN ||
                 url === ORIGIN_URL_NEWS ||
+                url === ORIGIN_URL_CARDS ||
                 url === ORIGIN_URL_PASSWORD_NEWS
             ) {
                 setUrl(url + "?flag_app=true");
@@ -204,7 +206,7 @@ const ZweiWebview = () => {
                 startInLoadingState={true}
                 onShouldStartLoadWithRequest={(event) => {
                     const {url} = event;
-                    if (url.includes("cards?click_action=open_payment")) {
+                    if (url.includes("click_action=open_payment")) {
                         setWebviewUri({
                             uri: paymentParams.action,
                             method: 'POST',
@@ -214,24 +216,21 @@ const ZweiWebview = () => {
                     }
                     console.log('Loading: ' + url)
                     if (
-                        Platform.OS === "android" &&
                         url &&
-                        !url.includes("?flag_app=true")
+                        !url.includes("flag_app=true")
                     ) {
                         if (
                             url === ORIGIN_URL ||
                             url === ORIGIN_URL_SIGN_IN ||
                             url === ORIGIN_URL_NEWS ||
+                            url === ORIGIN_URL_CARDS ||
                             url === ORIGIN_URL_PASSWORD_NEWS
                         ) {
-                            setUrl(url + "?flag_app=true");
+                            setUrl(url + "flag_app=true");
                         } else {
                             setUrl(url);
                         }
                     }
-                    // if (url && url.includes("?flag_app=true")) {
-                    //   setUrl(url);
-                    // }
                     console.log('Opening: ' + url)
 
                     if (

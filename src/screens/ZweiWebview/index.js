@@ -227,7 +227,7 @@ const ZweiWebview = () => {
                             url === ORIGIN_URL_CARDS ||
                             url === ORIGIN_URL_PASSWORD_NEWS
                         ) {
-                            setUrl(url + "flag_app=true");
+                            setUrl(url + "?flag_app=true");
                         } else {
                             setUrl(url);
                         }

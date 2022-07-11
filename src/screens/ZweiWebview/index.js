@@ -236,7 +236,8 @@ const ZweiWebview = () => {
                         !url ||
                         url.includes(ORIGIN_URL) ||
                         url.includes(ORIGIN_URL) ||
-                        url.includes("cards")
+                        url.includes('cards') ||
+                        url.includes('WRP03010Action_doInit.action')
                     ) {
                         url.includes("sign_in") && webviewRef.current.injectJavaScript(js);
                         console.log('Opening url: ' + url)

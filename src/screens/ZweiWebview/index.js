@@ -20,7 +20,7 @@ import messaging from "@react-native-firebase/messaging";
 // TODO: Localhost
 const ORIGIN_URL = "192.168.1.127:3001";
 const ORIGIN_URL_SIGN_IN = `http://${ORIGIN_URL}/members/sign_in`;
-const ORIGIN_URL_CARDS = `https://${ORIGIN_URL}/cards`;
+const ORIGIN_URL_CARDS = `http://${ORIGIN_URL}/cards`;
 const ORIGIN_URL_NEWS = `http://${ORIGIN_URL}/news`;
 const ORIGIN_URL_PASSWORD_NEWS = `http://${ORIGIN_URL}/members/password/new`;
 const APP_PARAM = "flag_app=true";
@@ -147,36 +147,36 @@ const ZweiWebview = () => {
 
     const renderWebview = () => {
         const js = `
-        addPaymentBackButton();
-        postPaymentDataMessage();
-        setToken();
-        
-        function onBackPayment() {
-            history.back();
-            window.ReactNativeWebView.postMessage('on_back_payment');
-        }
-        function postPaymentDataMessage() {
-            if (document.location.href.includes('cards')) {
-                window.ReactNativeWebView.postMessage(document.getElementById('payment_json_data').innerHTML);
+            addPaymentBackButton();
+            postPaymentDataMessage();
+            setToken();
+            
+            function onBackPayment() {
+                history.back();
+                window.ReactNativeWebView.postMessage('on_back_payment');
             }
-        }
-        function setToken() {
-            window.document.getElementById('member_device_token').value = '${deviceToken}';
-            window.document.getElementById('member_device_name').value = '${deviceType}';
-            document.querySelector('.grecaptcha-badge').style.display = 'none';
-        }
-        function addPaymentBackButton() {
-            if (document.location.href.includes('WRP03010Action_doInit.action')) {
-                let btn = document.createElement("div");
-                btn.innerHTML = '<button>もどる</button>';
-                btn.onclick = function(){
-                    onBackPayment();
-                };
-                let body = document.getElementsByTagName('body')[0];
-                body.insertBefore(btn, body.children[0]);
+            function postPaymentDataMessage() {
+                if (document.location.href.includes('cards')) {
+                    window.ReactNativeWebView.postMessage(document.getElementById('payment_json_data').innerHTML);
+                }
             }
-        }
-    `;
+            function setToken() {
+                window.document.getElementById('member_device_token').value = '${deviceToken}';
+                window.document.getElementById('member_device_name').value = '${deviceType}';
+                document.querySelector('.grecaptcha-badge').style.display = 'none';
+            }
+            function addPaymentBackButton() {
+                if (document.location.href.includes('WRP03010Action_doInit.action')) {
+                    let btn = document.createElement("div");
+                    btn.innerHTML = '<button>もどる</button>';
+                    btn.onclick = function(){
+                        onBackPayment();
+                    };
+                    let body = document.getElementsByTagName('body')[0];
+                    body.insertBefore(btn, body.children[0]);
+                }
+            }
+        `;
 
         return (
             <WebView
@@ -210,19 +210,16 @@ const ZweiWebview = () => {
                             url === ORIGIN_URL_PASSWORD_NEWS
                         ) {
                             setUrl(url + "?flag_app=true");
-                        } else {
-                            setUrl(url);
                         }
                     }
                     if (
                         !url ||
                         url.includes(ORIGIN_URL) ||
-                        url.includes(ORIGIN_URL) ||
                         url.includes('cards') ||
                         url.includes('WRP03010Action_doInit.action')
                     ) {
                         url.includes("sign_in") && webviewRef.current.injectJavaScript(js);
-                        console.log('Opening url: ' + url)
+                        console.log('Handling url: ' + url)
                         return true;
                     }
                     console.log('Opening link: ' + url);

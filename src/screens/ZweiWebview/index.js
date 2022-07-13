@@ -45,13 +45,12 @@ const ZweiWebview = () => {
 
     const [deviceToken, setDeviceToken] = useState("");
     const [deviceType, setDeviceType] = useState("");
-    const [url, setUrl] = useState(PARAM_URL);
+    const [webviewUrl, setWebviewUrl] = useState(PARAM_URL);
     const [webKey, setWebKey] = useState(0);
 
     const webviewRef = useRef();
 
     useEffect(() => {
-        // Check whether an initial notification is available
         messaging()
             .getInitialNotification()
             .then((remoteMessage) => {
@@ -64,10 +63,8 @@ const ZweiWebview = () => {
                     // TODO: Localhost
                     const openUrl = "https://zwei-test:MsVfM7aVBf@" + sliceUrl;
                     // const openUrl = "http://" + sliceUrl;
-                    setUrl(openUrl);
-                    // setInitialRoute(remoteMessage.data.type) // e.g. "Settings"
+                    setWebviewUrl(openUrl);
                 }
-                // setLoading(false)
             });
     }, []);
 
@@ -87,7 +84,7 @@ const ZweiWebview = () => {
                 ? `${_notiUrl}&${APP_PARAM}`
                 : `${_notiUrl}?${APP_PARAM}`;
             // TODO: Localhost
-            setUrl(_url.replace("http://", "https://"));
+            setWebviewUrl(_url.replace("http://", "https://"));
             setWebKey(webKey + 1); //reset webview
             resetNotiData();
         }
@@ -95,7 +92,6 @@ const ZweiWebview = () => {
 
     const onNavigationStateChange = (webViewState) => {
         const {url} = webViewState;
-        console.log("onNavigationStateChange-->", url);
         if (!url.includes("flag_app=true")) {
             if (
                 url === ORIGIN_URL ||
@@ -104,11 +100,12 @@ const ZweiWebview = () => {
                 url.includes('cards') ||
                 url === ORIGIN_URL_PASSWORD_NEWS
             ) {
-                setUrl(url.includes("?")
+                setWebviewUrl(url.includes("?")
                     ? `${url}&${APP_PARAM}`
                     : `${url}?${APP_PARAM}`);
             }
         }
+        console.log("onNavigationStateChange-->", url);
     };
 
     const onResetNotificationCount = useCallback(
@@ -119,7 +116,6 @@ const ZweiWebview = () => {
                     token || deviceToken
                 }`
             );
-            // .then((res) => console.log("res", res));
         },
         [fetch, deviceToken, setBadge]
     );
@@ -147,17 +143,10 @@ const ZweiWebview = () => {
     const renderWebview = () => {
         const js = `
             addPaymentBackButton();
-            postPaymentDataMessage();
             setToken();
             
             function onBackPayment() {
-                history.back();
                 window.ReactNativeWebView.postMessage('on_back_payment');
-            }
-            function postPaymentDataMessage() {
-                if (document.location.href.includes('cards')) {
-                    window.ReactNativeWebView.postMessage(document.getElementById('payment_json_data').innerHTML);
-                }
             }
             function setToken() {
                 window.document.getElementById('member_device_token').value = '${deviceToken}';
@@ -182,21 +171,27 @@ const ZweiWebview = () => {
                 key={webKey}
                 ref={webviewRef}
                 source={{
-                    uri: url,
+                    uri: webviewUrl,
                 }}
                 style={styles.webview}
                 showsVerticalScrollIndicator={false}
                 javaScriptEnabled={true}
+                domStorageEnabled={false}
                 onNavigationStateChange={onNavigationStateChange}
                 javaScriptCanOpenWindowsAutomatically={true}
                 onMessage={(event) => {
                     console.log("event-->", event);
+                    let data = event.nativeEvent.data;
+                    if (data != null && data !== 'undefined') {
+                        if(data === 'on_back_payment') {
+                            webviewRef.current.goBack();
+                        }
+                    }
                 }}
                 injectedJavaScript={js}
                 startInLoadingState={true}
                 onShouldStartLoadWithRequest={(event) => {
                     const {url} = event;
-                    console.log('Loading: ' + url)
                     if (
                         url &&
                         !url.includes("flag_app=true")
@@ -208,11 +203,12 @@ const ZweiWebview = () => {
                             url.includes('cards') ||
                             url === ORIGIN_URL_PASSWORD_NEWS
                         ) {
-                            setUrl(url.includes("?")
+                            setWebviewUrl(url.includes("?")
                                 ? `${url}&${APP_PARAM}`
                                 : `${url}?${APP_PARAM}`);
                         }
                     }
+                    console.log('Loading: ' + url)
                     if (
                         !url ||
                         url.includes(ORIGIN_URL) ||

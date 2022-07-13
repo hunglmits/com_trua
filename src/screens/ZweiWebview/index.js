@@ -176,7 +176,6 @@ const ZweiWebview = () => {
                 style={styles.webview}
                 showsVerticalScrollIndicator={false}
                 javaScriptEnabled={true}
-                domStorageEnabled={false}
                 onNavigationStateChange={onNavigationStateChange}
                 javaScriptCanOpenWindowsAutomatically={true}
                 onMessage={(event) => {

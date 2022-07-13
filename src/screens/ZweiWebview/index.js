@@ -91,7 +91,6 @@ const ZweiWebview = () => {
             setWebKey(webKey + 1); //reset webview
             resetNotiData();
         }
-        // setUrl(PARAM_URL);
     }, [notiData]);
 
     const onNavigationStateChange = (webViewState) => {
@@ -102,9 +101,12 @@ const ZweiWebview = () => {
                 url === ORIGIN_URL ||
                 url === ORIGIN_URL_SIGN_IN ||
                 url === ORIGIN_URL_NEWS ||
+                url.includes('cards') ||
                 url === ORIGIN_URL_PASSWORD_NEWS
             ) {
-                setUrl(url + "?flag_app=true");
+                setUrl(url.includes("?")
+                    ? `${url}&${APP_PARAM}`
+                    : `${url}?${APP_PARAM}`);
             }
         }
     };
@@ -203,25 +205,29 @@ const ZweiWebview = () => {
                             url === ORIGIN_URL ||
                             url === ORIGIN_URL_SIGN_IN ||
                             url === ORIGIN_URL_NEWS ||
-                            url === ORIGIN_URL_CARDS ||
+                            url.includes('cards') ||
                             url === ORIGIN_URL_PASSWORD_NEWS
                         ) {
-                            setUrl(url + "?flag_app=true");
+                            setUrl(url.includes("?")
+                                ? `${url}&${APP_PARAM}`
+                                : `${url}?${APP_PARAM}`);
                         }
                     }
                     if (
                         !url ||
                         url.includes(ORIGIN_URL) ||
+                        url.includes("sign_in") ||
                         url.includes('cards') ||
                         url.includes('WRP03010Action_doInit.action')
                     ) {
                         url.includes("sign_in") && webviewRef.current.injectJavaScript(js);
                         console.log('Handling url: ' + url)
                         return true;
+                    } else if(!url.includes('recaptcha')) {
+                        console.log('Opening link: ' + url);
+                        Linking.openURL(url);
+                        return false;
                     }
-                    console.log('Opening link: ' + url);
-                    Linking.openURL(url);
-                    return false;
                 }}
                 renderLoading={renderLoadingIndicatorView}
                 allowsBackForwardNavigationGestures={true}

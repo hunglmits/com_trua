@@ -14,24 +14,24 @@ import messaging from "@react-native-firebase/messaging";
 // TODO: DEV
 // const ORIGIN_URL = "dev.zwei-test.com";
 // TODO: STG5-3
-// const ORIGIN_URL = "stg5-3.zwei-test.com";
+const ORIGIN_URL = "stg5-3.zwei-test.com";
 // TODO: Product
 // const ORIGIN_URL = "app.zwei.ne.jp";
 // TODO: Localhost
-const ORIGIN_URL = "192.168.1.127:3001";
-const ORIGIN_URL_SIGN_IN = `http://${ORIGIN_URL}/members/sign_in`;
-const ORIGIN_URL_NEWS = `http://${ORIGIN_URL}/news`;
-const ORIGIN_URL_PASSWORD_NEWS = `http://${ORIGIN_URL}/members/password/new`;
-const APP_PARAM = "flag_app=true";
-const BASE_URL = `http://${ORIGIN_URL}`;
-const PARAM_URL = `${BASE_URL}?${APP_PARAM}`;
-
-// const ORIGIN_URL_SIGN_IN = `https://${ORIGIN_URL}/members/sign_in`;
-// const ORIGIN_URL_NEWS = `https://${ORIGIN_URL}/news`;
-// const ORIGIN_URL_PASSWORD_NEWS = `https://${ORIGIN_URL}/members/password/new`;
+// const ORIGIN_URL = "192.168.1.127:3001";
+// const ORIGIN_URL_SIGN_IN = `http://${ORIGIN_URL}/members/sign_in`;
+// const ORIGIN_URL_NEWS = `http://${ORIGIN_URL}/news`;
+// const ORIGIN_URL_PASSWORD_NEWS = `http://${ORIGIN_URL}/members/password/new`;
 // const APP_PARAM = "flag_app=true";
-// const BASE_URL = `https://zwei-test:MsVfM7aVBf@${ORIGIN_URL}`;
+// const BASE_URL = `http://${ORIGIN_URL}`;
 // const PARAM_URL = `${BASE_URL}?${APP_PARAM}`;
+
+const ORIGIN_URL_SIGN_IN = `https://${ORIGIN_URL}/members/sign_in`;
+const ORIGIN_URL_NEWS = `https://${ORIGIN_URL}/news`;
+const ORIGIN_URL_PASSWORD_NEWS = `https://${ORIGIN_URL}/members/password/new`;
+const APP_PARAM = "flag_app=true";
+const BASE_URL = `https://zwei-test:MsVfM7aVBf@${ORIGIN_URL}`;
+const PARAM_URL = `${BASE_URL}?${APP_PARAM}`;
 
 const ZweiWebview = () => {
     const [onAppStateChange] = useAppState();
@@ -59,8 +59,8 @@ const ZweiWebview = () => {
                         : `${_notiUrl}?${APP_PARAM}`;
                     const sliceUrl = _url.slice(8);
                     // TODO: Localhost
-                    // const openUrl = "https://zwei-test:MsVfM7aVBf@" + sliceUrl;
-                    const openUrl = "http://" + sliceUrl;
+                    const openUrl = "https://zwei-test:MsVfM7aVBf@" + sliceUrl;
+                    // const openUrl = "http://" + sliceUrl;
                     setWebviewUrl(openUrl);
                 }
             });
@@ -82,7 +82,7 @@ const ZweiWebview = () => {
                 ? `${_notiUrl}&${APP_PARAM}`
                 : `${_notiUrl}?${APP_PARAM}`;
             // TODO: Localhost
-            // setWebviewUrl(_url.replace("http://", "https://"));
+            setWebviewUrl(_url.replace("http://", "https://"));
             setWebKey(webKey + 1); //reset webview
             resetNotiData();
         }

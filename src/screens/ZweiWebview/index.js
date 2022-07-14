@@ -225,7 +225,7 @@ const ZweiWebview = () => {
                         url.includes("sign_in") && webviewRef.current.injectJavaScript(js);
                         console.log('Handling url: ' + url)
                         return true;
-                    } else {
+                    } else if (!url.includes('recaptcha')) {
                         console.log('Opening link: ' + url);
                         Linking.openURL(url);
                         return false;

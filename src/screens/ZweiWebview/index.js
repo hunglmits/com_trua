@@ -20,7 +20,6 @@ import messaging from "@react-native-firebase/messaging";
 // TODO: Localhost
 const ORIGIN_URL = "192.168.1.127:3001";
 const ORIGIN_URL_SIGN_IN = `http://${ORIGIN_URL}/members/sign_in`;
-const ORIGIN_URL_CARDS = `http://${ORIGIN_URL}/cards`;
 const ORIGIN_URL_NEWS = `http://${ORIGIN_URL}/news`;
 const ORIGIN_URL_PASSWORD_NEWS = `http://${ORIGIN_URL}/members/password/new`;
 const APP_PARAM = "flag_app=true";
@@ -28,7 +27,6 @@ const BASE_URL = `http://${ORIGIN_URL}`;
 const PARAM_URL = `${BASE_URL}?${APP_PARAM}`;
 
 // const ORIGIN_URL_SIGN_IN = `https://${ORIGIN_URL}/members/sign_in`;
-// const ORIGIN_URL_CARDS = `https://${ORIGIN_URL}/cards`;
 // const ORIGIN_URL_NEWS = `https://${ORIGIN_URL}/news`;
 // const ORIGIN_URL_PASSWORD_NEWS = `https://${ORIGIN_URL}/members/password/new`;
 // const APP_PARAM = "flag_app=true";
@@ -208,7 +206,7 @@ const ZweiWebview = () => {
                         }
                     }
                     console.log('Loading: ' + url)
-                    if (url.includes('add_card')) {
+                    if (url.includes('cards')) {
                         let _url = url;
                         if (!url.includes("flag_app=true")) {
                             _url = url.includes("?")
@@ -222,13 +220,12 @@ const ZweiWebview = () => {
                         !url ||
                         url.includes(ORIGIN_URL) ||
                         url.includes("sign_in") ||
-                        url.includes('cards') ||
                         url.includes('WRP03010Action_doInit.action')
                     ) {
                         url.includes("sign_in") && webviewRef.current.injectJavaScript(js);
                         console.log('Handling url: ' + url)
                         return true;
-                    } else if(!url.includes('recaptcha')) {
+                    } else {
                         console.log('Opening link: ' + url);
                         Linking.openURL(url);
                         return false;

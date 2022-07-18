@@ -20,7 +20,6 @@ const ORIGIN_URL = "stg5-3.zwei-test.com";
 // TODO: Localhost
 // const ORIGIN_URL = "192.168.1.127:3001";
 // const ORIGIN_URL_SIGN_IN = `http://${ORIGIN_URL}/members/sign_in`;
-// const ORIGIN_URL_SIGN_OUT = `http://${ORIGIN_URL}/members/sign_out`;
 // const ORIGIN_URL_NEWS = `http://${ORIGIN_URL}/news`;
 // const ORIGIN_URL_PASSWORD_NEWS = `http://${ORIGIN_URL}/members/password/new`;
 // const APP_PARAM = "flag_app=true";
@@ -28,14 +27,11 @@ const ORIGIN_URL = "stg5-3.zwei-test.com";
 // const PARAM_URL = `${BASE_URL}?${APP_PARAM}`;
 
 const ORIGIN_URL_SIGN_IN = `https://${ORIGIN_URL}/members/sign_in`;
-const ORIGIN_URL_CARDS = `https://${ORIGIN_URL}/cards`;
 const ORIGIN_URL_NEWS = `https://${ORIGIN_URL}/news`;
 const ORIGIN_URL_PASSWORD_NEWS = `https://${ORIGIN_URL}/members/password/new`;
 const APP_PARAM = "flag_app=true";
 const BASE_URL = `https://zwei-test:MsVfM7aVBf@${ORIGIN_URL}`;
 const PARAM_URL = `${BASE_URL}?${APP_PARAM}`;
-
-let paymentParams;
 
 const ZweiWebview = () => {
     const [onAppStateChange] = useAppState();
@@ -47,14 +43,12 @@ const ZweiWebview = () => {
 
     const [deviceToken, setDeviceToken] = useState("");
     const [deviceType, setDeviceType] = useState("");
-    const [url, setUrl] = useState(PARAM_URL);
+    const [webviewUrl, setWebviewUrl] = useState(PARAM_URL);
     const [webKey, setWebKey] = useState(0);
-    const [webviewUri, setWebviewUri] = useState();
 
     const webviewRef = useRef();
 
     useEffect(() => {
-        // Check whether an initial notification is available
         messaging()
             .getInitialNotification()
             .then((remoteMessage) => {
@@ -67,10 +61,8 @@ const ZweiWebview = () => {
                     // TODO: Localhost
                     const openUrl = "https://zwei-test:MsVfM7aVBf@" + sliceUrl;
                     // const openUrl = "http://" + sliceUrl;
-                    setUrl(openUrl);
-                    // setInitialRoute(remoteMessage.data.type) // e.g. "Settings"
+                    setWebviewUrl(openUrl);
                 }
-                // setLoading(false)
             });
     }, []);
 
@@ -90,27 +82,28 @@ const ZweiWebview = () => {
                 ? `${_notiUrl}&${APP_PARAM}`
                 : `${_notiUrl}?${APP_PARAM}`;
             // TODO: Localhost
-            setUrl(_url.replace("http://", "https://"));
+            setWebviewUrl(_url.replace("http://", "https://"));
             setWebKey(webKey + 1); //reset webview
             resetNotiData();
         }
-        // setUrl(PARAM_URL);
     }, [notiData]);
 
     const onNavigationStateChange = (webViewState) => {
         const {url} = webViewState;
-        console.log("onNavigationStateChange-->", url);
         if (!url.includes("flag_app=true")) {
             if (
                 url === ORIGIN_URL ||
                 url === ORIGIN_URL_SIGN_IN ||
                 url === ORIGIN_URL_NEWS ||
-                url === ORIGIN_URL_CARDS ||
+                url.includes('cards') ||
                 url === ORIGIN_URL_PASSWORD_NEWS
             ) {
-                setUrl(url + "?flag_app=true");
+                setWebviewUrl(url.includes("?")
+                    ? `${url}&${APP_PARAM}`
+                    : `${url}?${APP_PARAM}`);
             }
         }
+        console.log("onNavigationStateChange-->", url);
     };
 
     const onResetNotificationCount = useCallback(
@@ -121,7 +114,6 @@ const ZweiWebview = () => {
                     token || deviceToken
                 }`
             );
-            // .then((res) => console.log("res", res));
         },
         [fetch, deviceToken, setBadge]
     );
@@ -148,43 +140,36 @@ const ZweiWebview = () => {
 
     const renderWebview = () => {
         const js = `
-        addPaymentBackButton();
-        postPaymentDataMessage();
-        setToken();
-        
-        function onBackPayment() {
-            history.back();
-            window.ReactNativeWebView.postMessage('on_back_payment');
-        }
-        function postPaymentDataMessage() {
-            if (document.location.href.includes('cards')) {
-                window.ReactNativeWebView.postMessage(document.getElementById('payment_json_data').innerHTML);
+            addPaymentBackButton();
+            setToken();
+            
+            function onBackPayment() {
+                window.ReactNativeWebView.postMessage('on_back_payment');
             }
-        }
-        function setToken() {
-            window.document.getElementById('member_device_token').value = '${deviceToken}';
-            window.document.getElementById('member_device_name').value = '${deviceType}';
-            document.querySelector('.grecaptcha-badge').style.display = 'none';
-        }
-        function addPaymentBackButton() {
-            if (document.location.href.includes('WRP03010Action_doInit.action')) {
-                let btn = document.createElement("div");
-                btn.innerHTML = '<button>もどる</button>';
-                btn.onclick = function(){
-                    onBackPayment();
-                };
-                let body = document.getElementsByTagName('body')[0];
-                body.insertBefore(btn, body.children[0]);
+            function setToken() {
+                window.document.getElementById('member_device_token').value = '${deviceToken}';
+                window.document.getElementById('member_device_name').value = '${deviceType}';
+                document.querySelector('.grecaptcha-badge').style.display = 'none';
             }
-        }
-    `;
+            function addPaymentBackButton() {
+                if (document.location.href.includes('WRP03010Action_doInit.action')) {
+                    let btn = document.createElement("div");
+                    btn.innerHTML = '<button>もどる</button>';
+                    btn.onclick = function(){
+                        onBackPayment();
+                    };
+                    let body = document.getElementsByTagName('body')[0];
+                    body.insertBefore(btn, body.children[0]);
+                }
+            }
+        `;
 
         return (
             <WebView
                 key={webKey}
                 ref={webviewRef}
-                source={webviewUri ?? {
-                    uri: url,
+                source={{
+                    uri: webviewUrl,
                 }}
                 style={styles.webview}
                 showsVerticalScrollIndicator={false}
@@ -193,13 +178,10 @@ const ZweiWebview = () => {
                 javaScriptCanOpenWindowsAutomatically={true}
                 onMessage={(event) => {
                     console.log("event-->", event);
-                    if (event.nativeEvent.url.includes('cards') && typeof event.nativeEvent.data != "undefined") {
-                        paymentParams = JSON.parse(event.nativeEvent.data);
-                        console.log("paymentParams-->", paymentParams);
-                    }
-                    if (event.nativeEvent.url.includes('WRP03010Action_doInit.action') && typeof event.nativeEvent.data != "undefined") {
-                        if(event.nativeEvent.data.includes('on_back_payment')) {
-                            setWebviewUri(null);
+                    let data = event.nativeEvent.data;
+                    if (data != null && data !== 'undefined') {
+                        if(data === 'on_back_payment') {
+                            webviewRef.current.goBack();
                         }
                     }
                 }}
@@ -207,15 +189,6 @@ const ZweiWebview = () => {
                 startInLoadingState={true}
                 onShouldStartLoadWithRequest={(event) => {
                     const {url} = event;
-                    if (url.includes("click_action=open_payment")) {
-                        setWebviewUri({
-                            uri: paymentParams.action,
-                            method: 'POST',
-                            body: paymentParams.body
-                        });
-                        return false;
-                    }
-                    console.log('Loading: ' + url)
                     if (
                         url &&
                         !url.includes("flag_app=true")
@@ -224,28 +197,39 @@ const ZweiWebview = () => {
                             url === ORIGIN_URL ||
                             url === ORIGIN_URL_SIGN_IN ||
                             url === ORIGIN_URL_NEWS ||
-                            url === ORIGIN_URL_CARDS ||
+                            url.includes('cards') ||
                             url === ORIGIN_URL_PASSWORD_NEWS
                         ) {
-                            setUrl(url + "?flag_app=true");
-                        } else {
-                            setUrl(url);
+                            setWebviewUrl(url.includes("?")
+                                ? `${url}&${APP_PARAM}`
+                                : `${url}?${APP_PARAM}`);
                         }
                     }
-                    if (
+                    console.log('Loading: ' + url)
+                    if (url.includes('cards')) {
+                        let _url = url;
+                        if (!url.includes("flag_app=true")) {
+                            _url = url.includes("?")
+                                ? `${url}&${APP_PARAM}`
+                                : `${url}?${APP_PARAM}`;
+                        }
+                        console.log('Opening link: ' + _url);
+                        Linking.openURL(_url);
+                        return false;
+                    } else if (
                         !url ||
                         url.includes(ORIGIN_URL) ||
-                        url.includes(ORIGIN_URL) ||
-                        url.includes('cards') ||
+                        url.includes("sign_in") ||
                         url.includes('WRP03010Action_doInit.action')
                     ) {
                         url.includes("sign_in") && webviewRef.current.injectJavaScript(js);
-                        console.log('Opening url: ' + url)
+                        console.log('Handling url: ' + url)
                         return true;
+                    } else if (!url.includes('recaptcha')) {
+                        console.log('Opening link: ' + url);
+                        Linking.openURL(url);
+                        return false;
                     }
-                    console.log('Opening link: ' + url);
-                    Linking.openURL(url);
-                    return false;
                 }}
                 renderLoading={renderLoadingIndicatorView}
                 allowsBackForwardNavigationGestures={true}

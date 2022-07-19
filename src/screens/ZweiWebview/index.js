@@ -206,7 +206,7 @@ const ZweiWebview = () => {
                         }
                     }
                     console.log('Loading: ' + url)
-                    if (url.includes('cards')) {
+                    if (url.includes('token')) {
                         let _url = url;
                         if (!url.includes("flag_app=true")) {
                             _url = url.includes("?")

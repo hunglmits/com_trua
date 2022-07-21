@@ -12,9 +12,9 @@ import messaging from "@react-native-firebase/messaging";
 // TODO: STG4
 // const ORIGIN_URL = "stg4.zwei-test.com";
 // TODO: DEV
-// const ORIGIN_URL = "dev.zwei-test.com";
+const ORIGIN_URL = "dev.zwei-test.com";
 // TODO: STG5-3
-const ORIGIN_URL = "stg5-3.zwei-test.com";
+// const ORIGIN_URL = "stg5-3.zwei-test.com";
 // TODO: Product
 // const ORIGIN_URL = "app.zwei.ne.jp";
 // TODO: Localhost
@@ -30,6 +30,7 @@ const ORIGIN_URL_SIGN_IN = `https://${ORIGIN_URL}/members/sign_in`;
 const ORIGIN_URL_NEWS = `https://${ORIGIN_URL}/news`;
 const ORIGIN_URL_PASSWORD_NEWS = `https://${ORIGIN_URL}/members/password/new`;
 const APP_PARAM = "flag_app=true";
+const IS_MOBILE = "is_mobile=true";
 const BASE_URL = `https://zwei-test:MsVfM7aVBf@${ORIGIN_URL}`;
 const PARAM_URL = `${BASE_URL}?${APP_PARAM}`;
 
@@ -90,20 +91,7 @@ const ZweiWebview = () => {
 
     const onNavigationStateChange = (webViewState) => {
         const {url} = webViewState;
-        if (!url.includes("flag_app=true")) {
-            if (
-                url === ORIGIN_URL ||
-                url === ORIGIN_URL_SIGN_IN ||
-                url === ORIGIN_URL_NEWS ||
-                url.includes('cards') ||
-                url === ORIGIN_URL_PASSWORD_NEWS
-            ) {
-                setWebviewUrl(url.includes("?")
-                    ? `${url}&${APP_PARAM}`
-                    : `${url}?${APP_PARAM}`);
-            }
-        }
-        console.log("onNavigationStateChange-->", url);
+        console.log("onNavigationStateChange-->", includeUrlParams(url));
     };
 
     const onResetNotificationCount = useCallback(
@@ -137,6 +125,31 @@ const ZweiWebview = () => {
             </View>
         );
     };
+
+    function includeUrlParams(url) {
+        let _url = url;
+        if (!url.includes("flag_app=true")) {
+            if (
+                url === ORIGIN_URL ||
+                url === ORIGIN_URL_SIGN_IN ||
+                url === ORIGIN_URL_NEWS ||
+                url.includes('cards') ||
+                url === ORIGIN_URL_PASSWORD_NEWS
+            ) {
+                _url = _url.includes("?")
+                    ? `${url}&${APP_PARAM}`
+                    : `${url}?${APP_PARAM}`;
+            }
+        }
+        // Register confirmation
+        if (url.includes("register_confirmations") && !url.includes(IS_MOBILE)) {
+            _url = _url.includes("?")
+                ? `${url}&${IS_MOBILE}`
+                : `${url}?${IS_MOBILE}`;
+        }
+        setWebviewUrl(_url);
+        return _url;
+    }
 
     const renderWebview = () => {
         const js = `
@@ -180,7 +193,7 @@ const ZweiWebview = () => {
                     console.log("event-->", event);
                     let data = event.nativeEvent.data;
                     if (data != null && data !== 'undefined') {
-                        if(data === 'on_back_payment') {
+                        if (data === 'on_back_payment') {
                             webviewRef.current.goBack();
                         }
                     }
@@ -189,23 +202,7 @@ const ZweiWebview = () => {
                 startInLoadingState={true}
                 onShouldStartLoadWithRequest={(event) => {
                     const {url} = event;
-                    if (
-                        url &&
-                        !url.includes("flag_app=true")
-                    ) {
-                        if (
-                            url === ORIGIN_URL ||
-                            url === ORIGIN_URL_SIGN_IN ||
-                            url === ORIGIN_URL_NEWS ||
-                            url.includes('cards') ||
-                            url === ORIGIN_URL_PASSWORD_NEWS
-                        ) {
-                            setWebviewUrl(url.includes("?")
-                                ? `${url}&${APP_PARAM}`
-                                : `${url}?${APP_PARAM}`);
-                        }
-                    }
-                    console.log('Loading: ' + url)
+                    console.log('Loading: ' + includeUrlParams(url));
                     if (url.includes('token')) {
                         let _url = url;
                         if (!url.includes("flag_app=true")) {

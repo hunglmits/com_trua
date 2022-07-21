@@ -128,24 +128,24 @@ const ZweiWebview = () => {
 
     function includeUrlParams(url) {
         let _url = url;
-        if (!url.includes("flag_app=true")) {
+        if (!_url.includes("flag_app=true")) {
             if (
-                url === ORIGIN_URL ||
-                url === ORIGIN_URL_SIGN_IN ||
-                url === ORIGIN_URL_NEWS ||
-                url.includes('cards') ||
-                url === ORIGIN_URL_PASSWORD_NEWS
+                _url === ORIGIN_URL ||
+                _url === ORIGIN_URL_SIGN_IN ||
+                _url === ORIGIN_URL_NEWS ||
+                _url.includes('cards') ||
+                _url === ORIGIN_URL_PASSWORD_NEWS
             ) {
                 _url = _url.includes("?")
-                    ? `${url}&${APP_PARAM}`
-                    : `${url}?${APP_PARAM}`;
+                    ? `${_url}&${APP_PARAM}`
+                    : `${_url}?${APP_PARAM}`;
             }
         }
         // Register confirmation
-        if (url.includes("register_confirmations") && !url.includes(IS_MOBILE)) {
+        if (_url.includes("register_confirmations") && !_url.includes(IS_MOBILE)) {
             _url = _url.includes("?")
-                ? `${url}&${IS_MOBILE}`
-                : `${url}?${IS_MOBILE}`;
+                ? `${_url}&${IS_MOBILE}`
+                : `${_url}?${IS_MOBILE}`;
         }
         setWebviewUrl(_url);
         return _url;

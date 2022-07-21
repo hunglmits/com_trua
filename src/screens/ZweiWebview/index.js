@@ -10,9 +10,9 @@ import {useAppState, useNotificationHandler, useShortcutBadge,} from "../../hook
 import messaging from "@react-native-firebase/messaging";
 
 // TODO: STG4
-// const ORIGIN_URL = "stg4.zwei-test.com";
+const ORIGIN_URL = "stg4.zwei-test.com";
 // TODO: DEV
-const ORIGIN_URL = "dev.zwei-test.com";
+// const ORIGIN_URL = "dev.zwei-test.com";
 // TODO: STG5-3
 // const ORIGIN_URL = "stg5-3.zwei-test.com";
 // TODO: Product

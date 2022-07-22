@@ -23,6 +23,7 @@ const ORIGIN_URL = "stg4.zwei-test.com";
 // const ORIGIN_URL_NEWS = `http://${ORIGIN_URL}/news`;
 // const ORIGIN_URL_PASSWORD_NEWS = `http://${ORIGIN_URL}/members/password/new`;
 // const APP_PARAM = "flag_app=true";
+// const IS_MOBILE = "is_mobile=true";
 // const BASE_URL = `http://${ORIGIN_URL}`;
 // const PARAM_URL = `${BASE_URL}?${APP_PARAM}`;
 
@@ -84,7 +85,7 @@ const ZweiWebview = () => {
                 : `${_notiUrl}?${APP_PARAM}`;
             // TODO: Localhost
             setWebviewUrl(_url.replace("http://", "https://"));
-            setWebKey(webKey + 1); //reset webview
+            // setWebKey(webKey + 1); //reset webview
             resetNotiData();
         }
     }, [notiData]);
@@ -133,7 +134,6 @@ const ZweiWebview = () => {
                 _url === ORIGIN_URL ||
                 _url === ORIGIN_URL_SIGN_IN ||
                 _url === ORIGIN_URL_NEWS ||
-                _url.includes('cards') ||
                 _url === ORIGIN_URL_PASSWORD_NEWS
             ) {
                 _url = _url.includes("?")
@@ -147,13 +147,14 @@ const ZweiWebview = () => {
                 ? `${_url}&${IS_MOBILE}`
                 : `${_url}?${IS_MOBILE}`;
         }
-        setWebviewUrl(_url);
+        if (_url !== url) {
+            setWebviewUrl(_url);
+        }
         return _url;
     }
 
     const renderWebview = () => {
         const js = `
-            addPaymentBackButton();
             setToken();
             
             function onBackPayment() {
@@ -163,17 +164,6 @@ const ZweiWebview = () => {
                 window.document.getElementById('member_device_token').value = '${deviceToken}';
                 window.document.getElementById('member_device_name').value = '${deviceType}';
                 document.querySelector('.grecaptcha-badge').style.display = 'none';
-            }
-            function addPaymentBackButton() {
-                if (document.location.href.includes('WRP03010Action_doInit.action')) {
-                    let btn = document.createElement("div");
-                    btn.innerHTML = '<button>もどる</button>';
-                    btn.onclick = function(){
-                        onBackPayment();
-                    };
-                    let body = document.getElementsByTagName('body')[0];
-                    body.insertBefore(btn, body.children[0]);
-                }
             }
         `;
 
@@ -191,12 +181,6 @@ const ZweiWebview = () => {
                 javaScriptCanOpenWindowsAutomatically={true}
                 onMessage={(event) => {
                     console.log("event-->", event);
-                    let data = event.nativeEvent.data;
-                    if (data != null && data !== 'undefined') {
-                        if (data === 'on_back_payment') {
-                            webviewRef.current.goBack();
-                        }
-                    }
                 }}
                 injectedJavaScript={js}
                 startInLoadingState={true}
@@ -216,8 +200,7 @@ const ZweiWebview = () => {
                     } else if (
                         !url ||
                         url.includes(ORIGIN_URL) ||
-                        url.includes("sign_in") ||
-                        url.includes('WRP03010Action_doInit.action')
+                        url.includes("sign_in")
                     ) {
                         url.includes("sign_in") && webviewRef.current.injectJavaScript(js);
                         console.log('Handling url: ' + url)

@@ -1,0 +1,16 @@
+<%- include('header'); -%>
+<h1>Hùng Cơm Chưa</h1>
+<% config.forEach(function(quan){
+    let tenQuan = quan.name;
+    let valueQuan = quan.value;
+    let _class = 'com_image';
+    if (valueQuan !== 'com') {
+        _class = 'bun_image';
+    } %>
+    <h2><%= tenQuan %></h2>
+    <div class="container_mon_an">
+        <% quan.images.forEach(function(image){ %>
+            <img class="<%= _class %>" src="/images/<%= valueQuan %>/<%= image %>" alt="com">
+        <% }); %>
+    </div>
+<% }); %>

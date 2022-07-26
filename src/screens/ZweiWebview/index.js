@@ -19,7 +19,7 @@ const ORIGIN_URL = "stg4.zwei-test.com";
 // const ORIGIN_URL = "app.zwei.ne.jp";
 // TODO: Localhost
 // const ORIGIN_URL = "192.168.1.127:3001";
-// const ORIGIN_URL_SIGN_IN = `http://${ORIGIN_URL}/members/sign_in`;
+// const ORIGIN_URL_SIGN_IN = `members/sign_in`;
 // const ORIGIN_URL_NEWS = `http://${ORIGIN_URL}/news`;
 // const ORIGIN_URL_PASSWORD_NEWS = `http://${ORIGIN_URL}/members/password/new`;
 // const APP_PARAM = "flag_app=true";
@@ -27,7 +27,7 @@ const ORIGIN_URL = "stg4.zwei-test.com";
 // const BASE_URL = `http://${ORIGIN_URL}`;
 // const PARAM_URL = `${BASE_URL}?${APP_PARAM}`;
 
-const ORIGIN_URL_SIGN_IN = `https://${ORIGIN_URL}/members/sign_in`;
+const ORIGIN_URL_SIGN_IN = `members/sign_in`;
 const ORIGIN_URL_NEWS = `https://${ORIGIN_URL}/news`;
 const ORIGIN_URL_PASSWORD_NEWS = `https://${ORIGIN_URL}/members/password/new`;
 const APP_PARAM = "flag_app=true";
@@ -132,7 +132,7 @@ const ZweiWebview = () => {
         if (!_url.includes("flag_app=true")) {
             if (
                 _url === ORIGIN_URL ||
-                _url === ORIGIN_URL_SIGN_IN ||
+                _url.includes(ORIGIN_URL_SIGN_IN) ||
                 _url === ORIGIN_URL_NEWS ||
                 _url === ORIGIN_URL_PASSWORD_NEWS
             ) {

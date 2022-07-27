@@ -470,7 +470,7 @@
 				CODE_SIGN_ENTITLEMENTS = zwei_app/zwei_app.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 36RF5ASHJN;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = zwei_app/Info.plist;
@@ -503,7 +503,7 @@
 				CODE_SIGN_ENTITLEMENTS = zwei_app/zwei_app.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 36RF5ASHJN;
 				INFOPLIST_FILE = zwei_app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

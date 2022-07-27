@@ -10,11 +10,11 @@ import {useAppState, useNotificationHandler, useShortcutBadge,} from "../../hook
 import messaging from "@react-native-firebase/messaging";
 
 // TODO: STG4
-const ORIGIN_URL = "stg4.zwei-test.com";
+// const ORIGIN_URL = "stg4.zwei-test.com";
 // TODO: DEV
 // const ORIGIN_URL = "dev.zwei-test.com";
 // TODO: STG5-3
-// const ORIGIN_URL = "stg5-3.zwei-test.com";
+const ORIGIN_URL = "stg5-3.zwei-test.com";
 // TODO: Product
 // const ORIGIN_URL = "app.zwei.ne.jp";
 // TODO: Localhost
@@ -47,6 +47,15 @@ const ZweiWebview = () => {
     const [deviceType, setDeviceType] = useState("");
     const [webviewUrl, setWebviewUrl] = useState(PARAM_URL);
     const [webKey, setWebKey] = useState(0);
+
+    const js = `
+            try {
+                document.querySelector('.grecaptcha-badge').style.display = 'none';
+                window.document.getElementById('member_device_token').value = '${deviceToken}';
+                window.document.getElementById('member_device_name').value = '${deviceType}';
+            }
+            catch(err) {}
+        `;
 
     const webviewRef = useRef();
 
@@ -154,19 +163,6 @@ const ZweiWebview = () => {
     }
 
     const renderWebview = () => {
-        const js = `
-            setToken();
-            
-            function onBackPayment() {
-                window.ReactNativeWebView.postMessage('on_back_payment');
-            }
-            function setToken() {
-                window.document.getElementById('member_device_token').value = '${deviceToken}';
-                window.document.getElementById('member_device_name').value = '${deviceType}';
-                document.querySelector('.grecaptcha-badge').style.display = 'none';
-            }
-        `;
-
         return (
             <WebView
                 key={webKey}
@@ -187,6 +183,7 @@ const ZweiWebview = () => {
                 onShouldStartLoadWithRequest={(event) => {
                     const {url} = event;
                     console.log('Loading: ' + includeUrlParams(url));
+                    webviewRef.current.injectJavaScript(js);
                     if (url.includes('token')) {
                         let _url = url;
                         if (!url.includes("flag_app=true")) {
@@ -202,7 +199,6 @@ const ZweiWebview = () => {
                         url.includes(ORIGIN_URL) ||
                         url.includes("sign_in")
                     ) {
-                        url.includes("sign_in") && webviewRef.current.injectJavaScript(js);
                         console.log('Handling url: ' + url)
                         return true;
                     } else if (!url.includes('recaptcha')) {
@@ -229,6 +225,9 @@ const styles = StyleSheet.create({
     },
     webview: {
         flex: 1,
+    },
+    'grecaptcha-badge': {
+        display: 'none'
     },
     loadingWrapper: {
         flex: 1,

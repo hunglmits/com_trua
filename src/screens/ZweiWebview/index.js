@@ -136,11 +136,12 @@ const ZweiWebview = () => {
 
     function includeUrlParams(url) {
         let _url = url;
-        if (!_url.includes("flag_app=true")) {
-            if (
-                _url === ORIGIN_URL ||
+        if (url &&
+            !_url.includes("flag_app=true")) {
+            if (Platform.OS === "android" &&
+                (_url === ORIGIN_URL ||
                 _url === BASE_URL ||
-                _url.includes(MEMBERS_SIGN_IN) ||
+                _url.includes(MEMBERS_SIGN_IN)) ||
                 _url.includes(NEWS) ||
                 _url.includes(MEMBERS_PASSWORD_NEWS)
             ) {

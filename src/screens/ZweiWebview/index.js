@@ -17,22 +17,20 @@ import messaging from "@react-native-firebase/messaging";
 const ORIGIN_URL = "stg5-3.zwei-test.com";
 // TODO: Product
 // const ORIGIN_URL = "app.zwei.ne.jp";
-// TODO: Localhost
-// const ORIGIN_URL = "192.168.1.127:3001";
-// const ORIGIN_URL_SIGN_IN = `members/sign_in`;
-// const ORIGIN_URL_NEWS = `http://${ORIGIN_URL}/news`;
-// const ORIGIN_URL_PASSWORD_NEWS = `http://${ORIGIN_URL}/members/password/new`;
-// const APP_PARAM = "flag_app=true";
-// const IS_MOBILE = "is_mobile=true";
-// const BASE_URL = `http://${ORIGIN_URL}`;
-// const PARAM_URL = `${BASE_URL}?${APP_PARAM}`;
-
-const ORIGIN_URL_SIGN_IN = `members/sign_in`;
-const ORIGIN_URL_NEWS = `https://${ORIGIN_URL}/news`;
-const ORIGIN_URL_PASSWORD_NEWS = `https://${ORIGIN_URL}/members/password/new`;
+const MEMBERS_SIGN_IN = `members/sign_in`;
+const RECAPTCHA = `recaptcha`;
+const TOKEN = `token`;
+const NEWS = `news`;
+const MEMBERS_PASSWORD_NEWS = `members/password/new`;
 const APP_PARAM = "flag_app=true";
 const IS_MOBILE = "is_mobile=true";
+
 const BASE_URL = `https://zwei-test:MsVfM7aVBf@${ORIGIN_URL}`;
+
+// TODO: Localhost
+// const ORIGIN_URL = "192.168.1.127:3001";
+// const BASE_URL = `http://${ORIGIN_URL}`;
+
 const PARAM_URL = `${BASE_URL}?${APP_PARAM}`;
 
 const ZweiWebview = () => {
@@ -141,9 +139,10 @@ const ZweiWebview = () => {
         if (!_url.includes("flag_app=true")) {
             if (
                 _url === ORIGIN_URL ||
-                _url.includes(ORIGIN_URL_SIGN_IN) ||
-                _url === ORIGIN_URL_NEWS ||
-                _url === ORIGIN_URL_PASSWORD_NEWS
+                _url === BASE_URL ||
+                _url.includes(MEMBERS_SIGN_IN) ||
+                _url.includes(NEWS) ||
+                _url.includes(MEMBERS_PASSWORD_NEWS)
             ) {
                 _url = _url.includes("?")
                     ? `${_url}&${APP_PARAM}`
@@ -155,9 +154,6 @@ const ZweiWebview = () => {
             _url = _url.includes("?")
                 ? `${_url}&${IS_MOBILE}`
                 : `${_url}?${IS_MOBILE}`;
-        }
-        if (_url !== url) {
-            setWebviewUrl(_url);
         }
         return _url;
     }
@@ -181,18 +177,16 @@ const ZweiWebview = () => {
                 startInLoadingState={true}
                 onShouldStartLoadWithRequest={(event) => {
                     const {url} = event;
-                    if (
-                        Platform.OS === "android" &&
-                        url &&
-                        !url.includes("?flag_app=true")
-                    ) {
-                        console.log('Including params: ' + includeUrlParams(url));
-                    } else {
-                        console.log('Loading: ' + url);
+                    const _url = includeUrlParams(url);
+                    if (_url !== url) {
+                        console.log('Including params: ' + _url);
+                        setWebviewUrl(_url);
+                        return true;
                     }
-                    if (url.includes('token')) {
+                    console.log('Loading: ' + url);
+                    if (url.includes(TOKEN)) {
                         let _url = url;
-                        if (!url.includes("flag_app=true")) {
+                        if (!url.includes(APP_PARAM)) {
                             _url = url.includes("?")
                                 ? `${url}&${APP_PARAM}`
                                 : `${url}?${APP_PARAM}`;
@@ -203,14 +197,13 @@ const ZweiWebview = () => {
                     } else if (
                         !url ||
                         url.includes(ORIGIN_URL) ||
-                        url.includes("sign_in") ||
-                        url.includes("recaptcha.net")
+                        url.includes(MEMBERS_SIGN_IN) ||
+                        url.includes(RECAPTCHA)
                     ) {
                         console.log('Handling url: ' + url)
                         webviewRef.current.injectJavaScript(js);
                         return true;
-                    } else if (!url.includes('recaptcha') &&
-                        !url.includes('about:blank')) {
+                    } else if (!url.includes('about:blank')) {
                         console.log('Opening link: ' + url);
                         Linking.openURL(url);
                         return false;

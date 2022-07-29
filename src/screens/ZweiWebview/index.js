@@ -47,13 +47,10 @@ const ZweiWebview = () => {
     const [webKey, setWebKey] = useState(0);
 
     const js = `
-            try {
-                document.querySelector('.grecaptcha-badge').style.display = 'none';
-                window.document.getElementById('member_device_token').value = '${deviceToken}';
-                window.document.getElementById('member_device_name').value = '${deviceType}';
-            }
-            catch(err) {}
-        `;
+        window.document.getElementById('member_device_token').value = '${deviceToken}';
+        window.document.getElementById('member_device_name').value = '${deviceType}';
+        document.querySelector('.grecaptcha-badge').style.display = 'none';
+    `;
 
     const webviewRef = useRef();
 
@@ -99,7 +96,13 @@ const ZweiWebview = () => {
 
     const onNavigationStateChange = (webViewState) => {
         const {url} = webViewState;
-        console.log("onNavigationStateChange-->", includeUrlParams(url));
+        const _url = includeUrlParams(url);
+        if (_url !== url || url.includes(MEMBERS_SIGN_IN)) {
+            console.log('onNavigationStateChange including params: ' + _url);
+        } else {
+            console.log("onNavigationStateChange: ", _url);
+        }
+        setWebviewUrl(_url);
     };
 
     const onResetNotificationCount = useCallback(
@@ -170,6 +173,7 @@ const ZweiWebview = () => {
                 style={styles.webview}
                 showsVerticalScrollIndicator={false}
                 javaScriptEnabled={true}
+                onNavigationStateChange={onNavigationStateChange}
                 javaScriptCanOpenWindowsAutomatically={true}
                 onMessage={(event) => {
                     console.log("event-->", event);
@@ -179,11 +183,11 @@ const ZweiWebview = () => {
                 onShouldStartLoadWithRequest={(event) => {
                     const {url} = event;
                     const _url = includeUrlParams(url);
-                    if (_url !== url) {
-                        console.log('Including params: ' + _url);
-                        setWebviewUrl(_url);
-                        return true;
-                    }
+                    // if (_url !== url) {
+                    //     console.log('Including params: ' + _url);
+                    //     setWebviewUrl(_url);
+                    //     return true;
+                    // }
                     console.log('Loading: ' + url);
                     if (url.includes(TOKEN)) {
                         let _url = url;

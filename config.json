@@ -1,12 +1,16 @@
 {
   "data": [
     {
-      "name" : "Cơm",
+      "name" : "Cơm (nhắn tin lên Skype)",
       "value" : "com"
     },
     {
-      "name" : "Bún",
+      "name" : "Bún (tự đặt với nhau)",
       "value" : "bun"
+    },
+    {
+      "name" : "Chè bưởi",
+      "value" : "che"
     },
     {
       "name" : "Thanh toán",

@@ -10,7 +10,6 @@ class HomeController {
                 _config[index]['images'] = files;
             });
         });
-        console.log(`Receive request from ${req.get('host') + req.originalUrl}`);
         res.render('home', {
             config: _config
         });

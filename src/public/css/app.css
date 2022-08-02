@@ -5,6 +5,7 @@
   justify-content: space-around; }
 
 .com_image {
+  flex-grow: 1;
   width: 240px;
   height: auto;
   object-fit: contain;
@@ -12,6 +13,7 @@
   margin: 10px; }
 
 .bun_image {
+  flex-grow: 1;
   width: 50%;
   height: auto;
   object-fit: contain;

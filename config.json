@@ -1,20 +1,20 @@
 {
   "data": [
     {
-      "name" : "Cơm (nhắn tin lên Skype)",
-      "value" : "com"
+      "name": "THANH TOÁN TRƯỚC NHÉ CÁC CON GIỜI!!!",
+      "value": "thanh_toan"
     },
     {
-      "name" : "Bún (tự đặt với nhau)",
-      "value" : "bun"
+      "name": "Cơm (nhắn tin lên Skype)",
+      "value": "com"
     },
     {
-      "name" : "Chè bưởi",
-      "value" : "che"
+      "name": "Bún (tự đặt với nhau)",
+      "value": "bun"
     },
     {
-      "name" : "Thanh toán",
-      "value" : "thanh_toan"
+      "name": "Chè bưởi",
+      "value": "che"
     }
   ]
 }

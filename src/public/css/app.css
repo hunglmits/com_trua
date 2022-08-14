@@ -5,8 +5,9 @@
   justify-content: space-around; }
 
 .com_image {
-  flex-grow: 1;
-  width: 240px;
+  flex-basis: 240px;
+  max-width: 20%;
+  min-width: 200px;
   height: auto;
   object-fit: contain;
   align-self: start;
